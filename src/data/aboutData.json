@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "badge": "Our Story & Vision",
+    "headline": "Building the digital foundation for trusted local mobility.",
+    "subheadline": "Our platform brings passengers, drivers, and vehicles together through simple technology that improves transparency without making travel more complicated."
+  },
+  "story": {
+    "title": "Why Local Transport Needs a Trusted Safety Layer",
+    "paragraphs": [
+      "Local transport is one of the most important parts of daily life, yet millions of rides still happen every day without any digital verification, accountability, or organized support system. In many situations, passengers have no digital connection to the driver or vehicle once the ride begins.",
+      "We saw an opportunity to build a platform that bridges that gap. By combining QR-based ride verification, driver onboarding, ride records, and operational support systems, we aim to create a more reliable travel experience for both passengers and drivers.",
+      "We didn't want to reinvent how people commute or force drivers into high commission systems. Instead, we built a non-intrusive digital companion that preserves the convenience of street hailing while providing the safety and accountability of modern tech platforms."
+    ]
+  },
+  "visionMission": {
+    "vision": {
+      "tag": "Our Vision",
+      "statement": "To build a trusted mobility ecosystem where local travel becomes safer, more transparent, and digitally connected.",
+      "description": "We envision Indian cities where every street-hailed auto ride is digitally authenticated, offering riders absolute confidence and drivers the dignity and trust they deserve."
+    },
+    "mission": {
+      "tag": "Our Mission",
+      "statement": "To make every local ride safer, smarter, and digitally connected.",
+      "description": "We want to simplify local mobility while creating systems that improve trust, organization, and ride transparency—one verified QR scan at a time."
+    }
+  },
+  "whatMakesUsDifferent": {
+    "title": "What Makes Us Different",
+    "subtitle": "How OTOX bridges the divide between physical street-hailing and modern digital platforms.",
+    "pillars": [
+      {
+        "id": "qr-verification",
+        "title": "QR-Based Ride Verification",
+        "description": "Instead of complicated booking flows, app waiting screens, or ride cancellations, passengers can quickly scan a physical QR code inside the auto to digitally connect their ride within 3 seconds.",
+        "highlight": "Zero Wait • Instant Link"
+      },
+      {
+        "id": "safety-accountability",
+        "title": "Focus on Safety and Accountability",
+        "description": "We are designing systems that help create better ride visibility, verified vehicle registry, emergency assistance, and rapid dispute resolution support workflows.",
+        "highlight": "24/7 Verified Support"
+      },
+      {
+        "id": "real-world-transport",
+        "title": "Built for Real Local Transport",
+        "description": "Our platform is designed around the ground realities of Indian auto travel and everyday commuting—handling low bandwidth, busy traffic junctions, and diverse user demographics effortlessly.",
+        "highlight": "Low Bandwidth • Street Tested"
+      },
+      {
+        "id": "driver-friendly",
+        "title": "Driver-Friendly Approach",
+        "description": "We believe technology should support drivers, not complicate their work or eat into their earnings. Drivers retain autonomy, build verified digital reputations, and gain respect.",
+        "highlight": "No Unfair Commissions"
+      }
+    ]
+  },
+  "coreValues": [
+    {
+      "title": "Radical Simplicity",
+      "description": "No tedious 10-step flows. Hop in, scan the QR, and your ride is protected."
+    },
+    {
+      "title": "Uncompromising Safety",
+      "description": "Every auto registered on OTOX undergoes vehicle and driver identity verification."
+    },
+    {
+      "title": "Grassroots Empowerment",
+      "description": "Championing local auto drivers by providing them with digital badges and rider confidence."
+    },
+    {
+      "title": "Open Accountability",
+      "description": "Clear digital ride receipts, accurate timestamps, and transparent support workflows."
+    }
+  ],
+  "lookingAhead": {
+    "title": "Looking Ahead",
+    "headline": "This is just the beginning of a much larger vision for connected local mobility.",
+    "description": "We are continuously working on improving the platform with better safety features, smarter ride systems, and stronger operational support. As the platform grows, we aim to continue building tools that help passengers travel with more confidence and help drivers become part of a stronger digital ecosystem.",
+    "milestones": [
+      { "year": "2024", "label": "Concept & Pilot", "desc": "Initial prototype tested with 500 auto drivers in Bangalore" },
+      { "year": "2025", "label": "Network Expansion", "desc": "Rolled out verified QR badges across major metro hubs" },
+      { "year": "2026", "label": "Ecosystem Scale", "desc": "Over 485,000+ verified trips and multi-city safety integration" },
+      { "year": "Next", "label": "Smarter Mobility", "desc": "Predictive safety alerts, family tracking circles & EV auto integration" }
+    ]
+  }
+}

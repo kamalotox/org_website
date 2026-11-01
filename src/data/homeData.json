@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "badge": "Trusted Local Mobility",
+    "headline": "Safe rides. Verified drivers. Smarter local travel.",
+    "subheadline": "A modern mobility platform designed to make everyday auto travel safer, simpler, and more accountable through QR-based ride verification.",
+    "primaryCta": "Get Started",
+    "secondaryCta": "Become a Driver",
+    "statsHighlight": "Over 485,000+ verified rides completed with zero friction."
+  },
+  "whyWeBuiltThis": {
+    "tag": "Why We Exist",
+    "title": "Why We Built OTOX",
+    "headline": "Local transport keeps our cities moving, but trust shouldn't be left to chance.",
+    "paragraph1": "Every day, millions of people travel through local transport systems without any verified ride tracking or reliable safety layer. In many situations, passengers have no digital connection to the driver or vehicle once the ride begins.",
+    "paragraph2": "We wanted to change that.",
+    "paragraph3": "Our platform helps create a trusted connection between passengers and drivers using simple QR-based ride verification. Whether it’s a daily commute, a late-night ride, or a quick trip across the city, every ride becomes digitally connected, organized, and easier to manage.",
+    "keyTakeaways": [
+      {
+        "title": "Zero Wait Time",
+        "description": "No waiting for cabs to arrive. Catch any auto on the street and verify instantly."
+      },
+      {
+        "title": "Real-World Accountability",
+        "description": "Direct link between vehicle number, verified driver KYC, and passenger trip log."
+      },
+      {
+        "title": "Preserving Local Mobility",
+        "description": "Empowers grassroots auto drivers without replacing the traditional hail-and-go model."
+      }
+    ]
+  },
+  "howItWorks": {
+    "tag": "Seamless 3-Step Process",
+    "title": "How OTOX Works",
+    "subtitle": "No complicated booking flow. No surge pricing surge. Just scan and ride with full confidence.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Scan the QR",
+        "description": "Passengers simply scan the unique OTOX QR code placed prominently inside the auto.",
+        "icon": "QrCode",
+        "detail": "Instant camera recognition — works directly from the OTOX app or your smartphone camera."
+      },
+      {
+        "step": "02",
+        "title": "Ride Gets Verified",
+        "description": "The platform securely links the passenger, driver, and vehicle for that specific ride session.",
+        "icon": "ShieldCheck",
+        "detail": "Driver identity badge, vehicle registration, and active timestamp appear on your screen."
+      },
+      {
+        "step": "03",
+        "title": "Travel with Confidence",
+        "description": "Ride history, safety support, and live digital records help create a more trusted travel experience.",
+        "icon": "Compass",
+        "detail": "Share ride status with family, access trip log anytime, and connect with 24/7 support if needed."
+      }
+    ]
+  },
+  "features": {
+    "tag": "Platform Capabilities",
+    "title": "Everything You Need for a Better Ride",
+    "subtitle": "Built with accountability, safety, and operational transparency at its core.",
+    "items": [
+      {
+        "id": "mapping",
+        "icon": "MapPin",
+        "title": "Verified Ride Mapping",
+        "description": "Every ride is digitally connected through secure QR verification with route records."
+      },
+      {
+        "id": "driver-verification",
+        "icon": "UserCheck",
+        "title": "Driver Verification",
+        "description": "Verified driver KYC and vehicle records help dramatically improve passenger trust."
+      },
+      {
+        "id": "ride-history",
+        "icon": "History",
+        "title": "Digital Ride History",
+        "description": "Passengers can access previous ride details, driver badges, and timestamps whenever needed."
+      },
+      {
+        "id": "safety",
+        "icon": "ShieldAlert",
+        "title": "Safety-Focused Platform",
+        "description": "Built with emergency response assistance, accountability, and dedicated support systems."
+      },
+      {
+        "id": "simple",
+        "icon": "Zap",
+        "title": "Simple Experience",
+        "description": "No complicated booking flows or cancellations. Just hop in, scan, and ride."
+      },
+      {
+        "id": "support",
+        "icon": "Headphones",
+        "title": "Real-Time Helpdesk",
+        "description": "Immediate access to dedicated support teams for both riders and drivers around the clock."
+      }
+    ]
+  },
+  "forBothSides": {
+    "tag": "Ecosystem",
+    "title": "Designed for Everyone in Urban Mobility",
+    "subtitle": "Connecting passengers and auto drivers through mutual trust and technology.",
+    "passengers": {
+      "badge": "For Passengers",
+      "headline": "Travel with complete peace of mind",
+      "description": "Step into any verified auto knowing your ride is tracked, safe, and backed by a trusted digital record.",
+      "benefits": [
+        "Instant verification in under 3 seconds",
+        "View verified driver identity & badge",
+        "One-tap ride sharing with family & friends",
+        "Detailed digital ride history & receipts",
+        "Fast 24/7 emergency & lost-and-found support"
+      ],
+      "cta": "Start Riding Safer"
+    },
+    "drivers": {
+      "badge": "For Drivers",
+      "headline": "Earn passenger trust & grow your livelihood",
+      "description": "We are building tools that help local drivers become part of a safer and more organized digital transport ecosystem.",
+      "benefits": [
+        "Build trusted rider relationships effortlessly",
+        "Maintain clear digital ride records",
+        "Improve passenger confidence & regular riders",
+        "Become part of a prestigious verified network",
+        "Access driver welfare & partner benefits"
+      ],
+      "cta": "Join OTOX as Driver"
+    }
+  },
+  "interactiveDemo": {
+    "title": "Experience OTOX Verification",
+    "subtitle": "See what happens in real-time when you scan an OTOX QR code inside an auto.",
+    "sampleDriver": {
+      "name": "Ramesh Kumar",
+      "id": "OTX-BLR-8921",
+      "vehicleNo": "KA 01 AH 5420",
+      "rating": "4.94",
+      "ridesCompleted": "1,420+",
+      "verifiedStatus": "Government ID & Background Verified",
+      "joined": "August 2024"
+    }
+  },
+  "faq": {
+    "tag": "Got Questions?",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about using OTOX as a commuter or partner driver.",
+    "items": [
+      {
+        "question": "Do I need to book through the app before hailing?",
+        "answer": "No. OTOX respects how you naturally travel. You simply hail an auto on the street as you normally do, get in, and scan the QR code placed inside the vehicle. The app links you instantly without cancellation fees or booking queues."
+      },
+      {
+        "question": "Is the app free for passengers?",
+        "answer": "Yes! Passengers can scan, verify their rides, view driver records, and access trip history at absolutely no additional cost."
+      },
+      {
+        "question": "How does QR ride verification protect me?",
+        "answer": "Once you scan the QR code, your ride session is securely logged with the vehicle's registration number and the driver's verified background. A digital record is established, making your journey trackable, verifiable, and backed by our safety support team."
+      },
+      {
+        "question": "How do I become a verified driver?",
+        "answer": "Drivers can register through the OTOX Driver App or visit any of our local city onboarding centers. Submit your driving license, vehicle registration (RC), and address verification. Once verified, you receive your unique official OTOX QR kit."
+      },
+      {
+        "question": "What if there is low network connectivity?",
+        "answer": "OTOX is engineered specifically for real-world Indian mobile connectivity. The QR handshake payload is tiny (under a few kilobytes) and confirms reliably even on 2G/3G connections or fluctuating networks."
+      },
+      {
+        "question": "Can I share my live ride status with friends or family?",
+        "answer": "Yes. Immediately upon scanning, you have the option to share a live safety link via WhatsApp or SMS so your loved ones can see your verified driver details and ride status."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Ready to Travel Smarter?",
+    "tagline": "We believe local travel should feel safer, smarter, and more connected for everyone.",
+    "subheadline": "Join a growing community that's making local mobility safer for everyone. Scan your first ride today or onboard your auto.",
+    "primaryCta": "Get Started Now",
+    "secondaryCta": "Become a Partner Driver"
+  }
+}

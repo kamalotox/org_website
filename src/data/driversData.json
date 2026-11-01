@@ -1,0 +1,86 @@
+{
+  "hero": {
+    "badge": "For Auto Drivers & Fleet Owners",
+    "headline": "Empowering Local Drivers with Dignity & Digital Trust",
+    "subheadline": "We are building tools that help local drivers become part of a safer, more organized, and respected transport ecosystem—without high commissions.",
+    "primaryCta": "Register as Driver",
+    "secondaryCta": "Find Verification Center"
+  },
+  "whyJoin": {
+    "title": "Why Auto Drivers Choose OTOX",
+    "subtitle": "Technology built to support you on the road, not complicate your daily earnings.",
+    "pillars": [
+      {
+        "icon": "Award",
+        "title": "Build Trusted Rider Relationships",
+        "description": "Showcase your verified profile, government badge, and clean track record. Passengers choose verified drivers with higher confidence."
+      },
+      {
+        "icon": "FileText",
+        "title": "Maintain Digital Ride Records",
+        "description": "Keep automated digital logs of trips for easy income estimation, dispute protection, and vehicle maintenance tracking."
+      },
+      {
+        "icon": "Smile",
+        "title": "Improve Passenger Confidence",
+        "description": "Female commuters, late-night travelers, and families feel safer riding in autos equipped with verified OTOX QR verification."
+      },
+      {
+        "icon": "Network",
+        "title": "Join a Growing Verified Network",
+        "description": "Access special driver partner benefits, community support, health checkup camps, and priority assistance."
+      }
+    ]
+  },
+  "howToJoin": {
+    "title": "How to Become a Verified OTOX Driver",
+    "subtitle": "Get verified in 4 simple steps and receive your official driver kit.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Submit Basic Details",
+        "description": "Fill out the registration form with your phone number, vehicle registration number, and city."
+      },
+      {
+        "step": "2",
+        "title": "Verify Driving Credentials",
+        "description": "Upload a photo of your valid commercial Driving License (DL) and Auto Registration Certificate (RC)."
+      },
+      {
+        "step": "3",
+        "title": "Collect Your OTOX QR Kit",
+        "description": "Receive your weatherproof, tamper-resistant OTOX QR sticker and official Driver ID badge."
+      },
+      {
+        "step": "4",
+        "title": "Stick QR & Start Verifying",
+        "description": "Affix the QR inside your auto. When passengers scan, your ride is instantly authenticated!"
+      }
+    ]
+  },
+  "driverPerks": [
+    "Zero cancellation penalties — you remain your own boss",
+    "No compulsory route mandates or arbitrary ratings deductions",
+    "Direct phone support line reserved exclusively for verified drivers",
+    "Official OTOX windshield & headrest branded QR stickers provided free",
+    "Special recognition badges for top-rated, safe community drivers"
+  ],
+  "driverFaq": [
+    {
+      "q": "Does OTOX charge a commission on my passenger fare?",
+      "a": "No! OTOX is a ride verification and safety platform, not a fare deduction platform. You collect your normal agreed meter/street fare directly from the passenger."
+    },
+    {
+      "q": "What documents do I need to register?",
+      "a": "You need a valid commercial Auto Driver's License, Vehicle Registration Certificate (RC), and Aadhaar / Voter ID for KYC verification."
+    },
+    {
+      "q": "How long does verification take?",
+      "a": "Once your documents are submitted, our local verification hub usually reviews and approves them within 24 to 48 hours."
+    },
+    {
+      "q": "What if my QR code sticker gets damaged?",
+      "a": "You can request a free replacement QR sticker directly through the OTOX Driver app or pick one up from any partner hub in your city."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "lastUpdated": "2026-11-01T12:00:00Z",
+  "summary": [
+    {
+      "id": "drivers",
+      "value": "12,450+",
+      "number": 12450,
+      "suffix": "+",
+      "label": "Verified Auto Drivers",
+      "sublabel": "Background checked & certified",
+      "badge": "Active Fleet"
+    },
+    {
+      "id": "rides",
+      "value": "485,000+",
+      "number": 485000,
+      "suffix": "+",
+      "label": "QR Rides Verified",
+      "sublabel": "Digitally protected journeys",
+      "badge": "Total Journeys"
+    },
+    {
+      "id": "users",
+      "value": "180,000+",
+      "number": 180000,
+      "suffix": "+",
+      "label": "Active Commuters",
+      "sublabel": "Travelling safer every day",
+      "badge": "Riders"
+    },
+    {
+      "id": "cities",
+      "value": "8 Cities",
+      "number": 8,
+      "suffix": " Cities",
+      "label": "Operational Hubs",
+      "sublabel": "Expanding across urban corridors",
+      "badge": "Network"
+    }
+  ],
+  "quickMetrics": {
+    "verificationSpeed": "3.2 sec",
+    "safetyRating": "4.92 / 5.0",
+    "verifiedVehicleCoverage": "99.4%",
+    "supportResponse": "< 2 min"
+  },
+  "cityBreakdown": [
+    { "city": "Bengaluru", "drivers": "4,200+", "rides": "180k+" },
+    { "city": "Hyderabad", "drivers": "3,100+", "rides": "125k+" },
+    { "city": "Pune", "drivers": "2,400+", "rides": "92k+" },
+    { "city": "Chennai", "drivers": "1,600+", "rides": "54k+" },
+    { "city": "Delhi NCR", "drivers": "1,150+", "rides": "34k+" }
+  ]
+}

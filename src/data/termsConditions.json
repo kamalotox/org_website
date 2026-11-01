@@ -1,0 +1,64 @@
+{
+  "title": "Terms and Conditions",
+  "lastUpdated": "November 1, 2026",
+  "effectiveDate": "November 1, 2026",
+  "badge": "Legal Agreement",
+  "summary": "These Terms and Conditions govern your access to and use of the OTOX platform, website, QR-code verification stickers, and mobile applications provided by OTOX Mobility Technologies Pvt. Ltd.",
+  "sections": [
+    {
+      "id": "acceptance",
+      "heading": "1. Acceptance of Terms",
+      "content": "By accessing our website, downloading the OTOX app, scanning an OTOX QR code, or registering as a driver partner, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services."
+    },
+    {
+      "id": "nature-of-service",
+      "heading": "2. Nature of OTOX Services",
+      "content": "OTOX is a digital ride-verification, safety record, and technological platform. OTOX is not a transportation carrier, taxi fleet owner, or public transport utility. Transportation services are provided independently by registered auto drivers. OTOX provides the QR verification handshake, safety layer, digital trip record, and support ecosystem connecting passengers and drivers."
+    },
+    {
+      "id": "passenger-terms",
+      "heading": "3. User Conduct & Passenger Obligations",
+      "bulletPoints": [
+        "Passengers must only scan genuine OTOX QR codes affixed inside authorized partner vehicles.",
+        "You agree to provide accurate phone verification details when initiating trip records.",
+        "Passengers agree to treat auto drivers with dignity, respect local traffic regulations, and pay the agreed street or meter fare directly to the driver.",
+        "Misuse of emergency buttons or false reporting of incidents will result in immediate suspension from the platform."
+      ]
+    },
+    {
+      "id": "driver-terms",
+      "heading": "4. Driver Partner Obligations",
+      "bulletPoints": [
+        "Drivers must possess valid, unexpired commercial driving licenses and vehicle registration documents at all times.",
+        "The OTOX QR sticker assigned to your vehicle is non-transferable and must remain clearly visible to passengers inside the vehicle.",
+        "Drivers must not allow unauthorized third parties to operate the vehicle under their verified OTOX identity.",
+        "Drivers agree to maintain safe driving standards and adhere to municipal transport fares and safety guidelines."
+      ]
+    },
+    {
+      "id": "qr-authenticity",
+      "heading": "5. QR Code Integrity & Prohibitions",
+      "content": "All OTOX QR codes, visual marks, digital security tokens, and stickers are proprietary assets of OTOX Mobility Technologies. It is strictly prohibited to copy, duplicate, digitally forge, tamper with, or redistribute OTOX QR codes for unauthorized commercial gain or deception."
+    },
+    {
+      "id": "limitation-liability",
+      "heading": "6. Limitation of Liability",
+      "content": "While OTOX conducts rigorous KYC verification of registered drivers and facilitates digital trip logging, physical road transit inherently carries risks. To the maximum extent permitted by applicable law, OTOX shall not be liable for indirect, incidental, or consequential damages arising out of the physical transportation provided by independent drivers, street traffic delays, or third-party vehicle faults."
+    },
+    {
+      "id": "intellectual-property",
+      "heading": "7. Intellectual Property",
+      "content": "The OTOX trademark, logo, design system, website source code, QR algorithms, and proprietary mobile software are protected under applicable intellectual property laws. No user or third party is granted any license or right to reproduce or exploit these assets without express written consent."
+    },
+    {
+      "id": "modifications",
+      "heading": "8. Amendments & Updates",
+      "content": "We reserve the right to amend these Terms and Conditions at any time. Any changes will be published on this website with an updated 'Last Revised' timestamp. Continued use of the OTOX platform after amendments signifies acceptance of the revised terms."
+    },
+    {
+      "id": "governing-law",
+      "heading": "9. Governing Law & Dispute Resolution",
+      "content": "These Terms shall be governed by and construed in accordance with the laws of the Republic of India. Any disputes arising in connection with these Terms shall be subject to the exclusive jurisdiction of the competent courts in Bengaluru, Karnataka, India."
+    }
+  ]
+}

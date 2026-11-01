@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "badge": "Get in Touch",
+    "headline": "We Would Love to Hear From You",
+    "subheadline": "Whether you are a passenger, driver, city partner, or simply interested in learning more about OTOX, feel free to reach out to us."
+  },
+  "intro": "Our team is always open to feedback, support requests, partnership opportunities, and collaboration ideas. Connect with the right department below.",
+  "departments": [
+    {
+      "id": "general",
+      "name": "General Enquiries",
+      "icon": "MessageSquare",
+      "description": "For questions about the platform, services, media queries, or general information.",
+      "email": "hello@otoxmobility.com",
+      "phone": "+91 98765 43210"
+    },
+    {
+      "id": "driver",
+      "name": "Driver Support",
+      "icon": "ShieldCheck",
+      "description": "Need help with driver onboarding, KYC verification, or QR sticker replacements? Our partner team is here for you.",
+      "email": "drivers@otoxmobility.com",
+      "phone": "+91 98765 43211"
+    },
+    {
+      "id": "partnerships",
+      "name": "Partnerships & Collaborations",
+      "icon": "Briefcase",
+      "description": "Interested in working with us, corporate transit solutions, or city-wide mobility collaborations?",
+      "email": "partners@otoxmobility.com",
+      "phone": "+91 98765 43212"
+    },
+    {
+      "id": "technical",
+      "name": "Technical Support",
+      "icon": "LifeBuoy",
+      "description": "Facing an issue while scanning a QR, accessing trip logs, or using the app? Reach out to our technical desk.",
+      "email": "support@otoxmobility.com",
+      "phone": "+91 98765 43213"
+    }
+  ],
+  "contactInfo": {
+    "emails": [
+      { "label": "General Email", "value": "hello@otoxmobility.com" },
+      { "label": "Dedicated Support", "value": "support@otoxmobility.com" },
+      { "label": "Driver Helpdesk", "value": "drivers@otoxmobility.com" }
+    ],
+    "phone": "+91 98765 43210",
+    "tollFree": "1800-OTOX-SAFE",
+    "officeHours": "Monday – Saturday | 9:00 AM – 6:00 PM (IST)",
+    "address": {
+      "facility": "OTOX Mobility Technologies HQ",
+      "line1": "4th Floor, Transit Tech Park, Outer Ring Road",
+      "line2": "Marathahalli-Sarjapur Junction",
+      "cityState": "Bengaluru, Karnataka, India - 560103"
+    }
+  },
+  "closing": {
+    "headline": "Thank You for Being Part of the Journey",
+    "tagline": "Together, we're building the future of trusted and safer local travel.",
+    "partnershipNote": "Interested in collaborating with us? Let's explore opportunities together."
+  }
+}

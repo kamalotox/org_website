@@ -1,0 +1,92 @@
+{
+  "title": "Privacy Policy",
+  "lastUpdated": "November 1, 2026",
+  "effectiveDate": "November 1, 2026",
+  "badge": "Transparency & Privacy First",
+  "summary": "This Privacy Policy explains how OTOX Mobility Technologies ('OTOX', 'we', 'our', or 'us') collects, uses, protects, and discloses personal information when you use our mobile applications, QR-based ride verification system, websites, and associated services.",
+  "sections": [
+    {
+      "id": "intro",
+      "heading": "1. Introduction & Scope",
+      "content": "At OTOX, we believe privacy and safety go hand in hand. Our mission is to make local street travel safer and more accountable through QR-based ride verification without unnecessarily intruding into your personal life. This policy governs how we collect, process, and safeguard information from passengers, auto drivers, and website visitors."
+    },
+    {
+      "id": "info-collected",
+      "heading": "2. Information We Collect",
+      "subsections": [
+        {
+          "subtitle": "A. Passenger Information",
+          "details": [
+            "Contact Details: Phone number, name (optional), and email address when you register an account or request ride receipts.",
+            "Ride Verification Data: Timestamp of QR scan, auto vehicle registration number, driver ID linked to the scanned code, and optional pickup/destination notes.",
+            "Location Information: Approximate or precise GPS location at the moment of QR scanning to confirm ride handshake and provide emergency assistance.",
+            "Support Interactions: Messages, feedback, or incident logs submitted to our customer care."
+          ]
+        },
+        {
+          "subtitle": "B. Driver Partner Information",
+          "details": [
+            "KYC and Identification: Full legal name, government photo ID, commercial driving license (DL), and vehicle registration certificate (RC).",
+            "Vehicle & Fleet Information: Auto rickshaw make, permit details, registration plate number, and assigned physical QR kit IDs.",
+            "Operational Data: Verification timestamps, rider safety ratings, active status, and communication history with OTOX support."
+          ]
+        },
+        {
+          "subtitle": "C. Technical & Device Information",
+          "details": [
+            "Device identifiers, IP address, operating system version, browser type, and diagnostic error reports."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "how-we-use",
+      "heading": "3. How We Use Your Information",
+      "content": "We use the collected information solely for legitimate operational and safety purposes:",
+      "bulletPoints": [
+        "Verifying the authentic link between a passenger and an authorized auto driver during each ride.",
+        "Generating immutable digital trip records for rider reference and dispute resolution.",
+        "Facilitating emergency response or lost-and-found claims if an item is left in a vehicle.",
+        "Preventing fraudulent QR duplications and protecting passengers against unverified operators.",
+        "Improving platform stability, low-bandwidth handshake speed, and overall user experience.",
+        "Complying with applicable local transportation laws and legitimate law enforcement requests."
+      ]
+    },
+    {
+      "id": "data-sharing",
+      "heading": "4. Information Sharing & Disclosure",
+      "content": "We do not sell, rent, or monetize your personal information to third-party data brokers or advertisers. We share information only under specific, transparent circumstances:",
+      "bulletPoints": [
+        "With Your Driver: When you scan the QR, the driver sees that an authenticated passenger has verified the trip (no sensitive financial or private contact data is exposed).",
+        "With Emergency Contacts: If you activate the 'Share Ride' or emergency feature, a live ride link is shared with your chosen recipients.",
+        "Service Providers: Trusted cloud hosting, SMS gateway, and mapping infrastructure providers operating under strict confidentiality contracts.",
+        "Legal & Regulatory Authorities: When required by applicable Indian laws or valid court/police orders in criminal investigations or safety incidents."
+      ]
+    },
+    {
+      "id": "security",
+      "heading": "5. Data Security & Retention",
+      "content": "We implement industry-standard encryption protocols (TLS/SSL in transit and AES-256 at rest) to safeguard your data. Verification logs and ride histories are retained for as long as necessary to fulfill safety obligations and facilitate passenger receipts, after which they are anonymized or securely archived."
+    },
+    {
+      "id": "user-rights",
+      "heading": "6. Your Rights & Choices",
+      "content": "You have complete control over your data. At any time, you may:",
+      "bulletPoints": [
+        "Access and download your historical ride verification logs.",
+        "Update your contact details or profile information.",
+        "Request the deletion of your passenger account and associated non-statutory records.",
+        "Opt out of non-essential promotional SMS or email communications."
+      ]
+    },
+    {
+      "id": "contact-privacy",
+      "heading": "7. Contact Our Data Protection Officer",
+      "content": "If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact our Data Protection Desk at:",
+      "contactDetails": {
+        "email": "privacy@otoxmobility.com",
+        "address": "OTOX Mobility Technologies Pvt. Ltd., Outer Ring Road, Bangalore, KA - 560103, India."
+      }
+    }
+  ]
+}
