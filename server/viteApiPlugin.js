@@ -28,7 +28,13 @@ export function otoxFormApiPlugin() {
 
   const getEnv = () => {
     const loaded = loadEnv(resolvedMode, resolvedEnvDir, '');
-    return { ...loaded, ...process.env };
+    const merged = { ...loaded };
+    for (const [key, val] of Object.entries(process.env)) {
+      if (typeof val === 'string' && val.trim().length > 0) {
+        merged[key] = val;
+      }
+    }
+    return merged;
   };
 
   return {

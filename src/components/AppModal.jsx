@@ -247,17 +247,32 @@ export default function AppModal({
                     />
                   </div>
 
-                  <div className="form-group-driver">
-                    <label className="form-label-driver">Mobile Number *</label>
-                    <input
-                      type="tel"
-                      className="form-input-driver"
-                      placeholder="+91 98765 XXXXX"
-                      required
-                      disabled={isSubmitting}
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
+                  <div className="modal-form-row-dual">
+                    <div className="form-group-driver">
+                      <label className="form-label-driver">Mobile Number *</label>
+                      <input
+                        type="tel"
+                        className="form-input-driver"
+                        placeholder="+91 98765 XXXXX"
+                        required
+                        disabled={isSubmitting}
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="form-group-driver">
+                      <label className="form-label-driver">City *</label>
+                      <input
+                        type="text"
+                        className="form-input-driver"
+                        placeholder="Enter your city"
+                        required
+                        disabled={isSubmitting}
+                        value={formData.city}
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      />
+                    </div>
                   </div>
 
                   <div className="form-group-driver">
@@ -275,19 +290,6 @@ export default function AppModal({
                     />
                   </div>
 
-                  <div className="form-group-driver">
-                    <label className="form-label-driver">City *</label>
-                    <input
-                      type="text"
-                      className="form-input-driver"
-                      placeholder="Enter your city"
-                      required
-                      disabled={isSubmitting}
-                      value={formData.city}
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    />
-                  </div>
-
                   {submitError && (
                     <div className="form-error-alert" role="alert">
                       <WarningCircle size={18} weight="bold" style={{ flexShrink: 0, marginTop: 1 }} />
@@ -298,7 +300,7 @@ export default function AppModal({
                   <button
                     type="submit"
                     className="btn-primary"
-                    style={{ width: '100%', marginTop: 8 }}
+                    style={{ width: '100%', marginTop: 4 }}
                     disabled={isSubmitting}
                   >
                     <span>
