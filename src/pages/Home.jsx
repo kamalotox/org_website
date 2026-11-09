@@ -79,7 +79,7 @@ export default function Home({ onOpenModal }) {
                 </button>
 
                 <button
-                  onClick={() => onOpenModal && onOpenModal('driver')}
+                  onClick={() => onOpenModal && onOpenModal('driver', 'Home Hero CTA')}
                   className="btn-secondary"
                 >
                   <UserCheck size={18} weight="bold" />
@@ -401,7 +401,7 @@ export default function Home({ onOpenModal }) {
               </button>
 
               <button
-                onClick={() => onOpenModal && onOpenModal('driver')}
+                onClick={() => onOpenModal && onOpenModal('driver', 'Home Closing CTA')}
                 className="btn-secondary"
               >
                 <UserCheck size={18} weight="bold" />

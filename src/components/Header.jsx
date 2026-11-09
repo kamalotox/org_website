@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import { List, X, QrCode, UserCheck } from '@phosphor-icons/react';
+import { lockPageScroll } from '../utils/scrollLock';
 import '../styles/Header.css';
 
 export default function Header({ onOpenModal }) {
@@ -26,10 +27,7 @@ export default function Header({ onOpenModal }) {
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
-    const prevHtmlOverflow = document.documentElement.style.overflow;
-    const prevHtmlOverscroll = document.documentElement.style.overscrollBehavior;
-    document.documentElement.style.overflow = 'hidden';
-    document.documentElement.style.overscrollBehavior = 'none';
+    const unlockScroll = lockPageScroll();
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -47,8 +45,7 @@ export default function Header({ onOpenModal }) {
     window.addEventListener('resize', handleResize);
 
     return () => {
-      document.documentElement.style.overflow = prevHtmlOverflow;
-      document.documentElement.style.overscrollBehavior = prevHtmlOverscroll;
+      unlockScroll();
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('resize', handleResize);
     };
@@ -93,7 +90,7 @@ export default function Header({ onOpenModal }) {
           </button>
 
           <button
-            onClick={() => onOpenModal && onOpenModal('driver')}
+            onClick={() => onOpenModal && onOpenModal('driver', 'Header CTA (Desktop)')}
             className="btn-primary header-action-btn"
           >
             <UserCheck size={16} weight="bold" />
@@ -162,7 +159,7 @@ export default function Header({ onOpenModal }) {
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenModal && onOpenModal('driver');
+                onOpenModal && onOpenModal('driver', 'Mobile Menu Drawer CTA');
               }}
               className="btn-secondary"
               style={{ width: '100%', textAlign: 'center' }}

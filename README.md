@@ -155,6 +155,24 @@ Edit [`src/data/privacyPolicy.json`](src/data/privacyPolicy.json) or [`src/data/
 
 ---
 
+## ✉️ Form Submissions & SMTP Email Setup
+
+All three website forms submit via `POST /api/submit-form` (handled by [`api/submit-form.js`](api/submit-form.js) on Vercel and [`server/viteApiPlugin.js`](server/viteApiPlugin.js) during `npm run dev` / `npm run preview`):
+
+- **Contact Page (`contact-page`)**: `/contact` Direct Message form
+- **For Drivers Page (`drivers-page`)**: `/drivers` Verification Kit application form
+- **Quick Driver Modal (`driver-modal`)**: Header / Home CTA popup registration form (also reports page path & trigger button)
+
+Each email uses a branded HTML + plain-text template highlighting the exact originating form in both the subject line and header banner.
+
+### Environment Configuration
+1. Copy `.env.example` to `.env` (already ignored by Git).
+2. Set `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM_NAME`, `MAIL_FROM_EMAIL`, and `MAIL_TO`.
+3. For Gmail SMTP (`smtp.gmail.com`, port `465`, `SMTP_SECURE=true`), generate a 16-character **Google App Password** and set it as `SMTP_PASS`.
+4. When deploying to Vercel, add the same variables under **Project Settings → Environment Variables**.
+
+---
+
 ## 🔗 Available Routes
 
 | Route | Page | Description |

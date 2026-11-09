@@ -26,20 +26,23 @@ function ScrollToTop() {
 export default function App() {
   const [modalState, setModalState] = useState({
     isOpen: false,
-    tab: 'passenger'
+    tab: 'passenger',
+    trigger: ''
   });
 
-  const handleOpenModal = (tab = 'passenger') => {
+  const handleOpenModal = (tab = 'passenger', trigger = '') => {
     setModalState({
       isOpen: true,
-      tab: tab
+      tab: tab,
+      trigger: trigger
     });
   };
 
   const handleCloseModal = () => {
     setModalState({
       isOpen: false,
-      tab: 'passenger'
+      tab: 'passenger',
+      trigger: ''
     });
   };
 
@@ -71,6 +74,7 @@ export default function App() {
         isOpen={modalState.isOpen}
         onClose={handleCloseModal}
         initialTab={modalState.tab}
+        triggerSource={modalState.trigger}
       />
     </div>
   );

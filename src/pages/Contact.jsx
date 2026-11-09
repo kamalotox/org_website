@@ -11,12 +11,16 @@ import {
   Clock,
   MapPin,
   PaperPlaneTilt,
-  CheckCircle
+  CheckCircle,
+  WarningCircle
 } from '@phosphor-icons/react';
+import { submitWebsiteForm } from '../utils/submitForm';
 import '../styles/Contact.css';
 
 export default function Contact() {
   const [formSent, setFormSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,10 +44,44 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setFormSent(true);
+    if (isSubmitting) return;
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
+      setSubmitError('Please fill in your full name, email address, and message.');
+      return;
+    }
+
+    setSubmitError('');
+    setIsSubmitting(true);
+
+    try {
+      await submitWebsiteForm({
+        formSource: 'contact-page',
+        pagePath: '/contact',
+        triggerSource: 'Contact Page — Direct Message Form',
+        data: {
+          ...formData,
+          name: trimmedName,
+          email: trimmedEmail,
+          phone: trimmedPhone,
+          message: trimmedMessage
+        }
+      });
+      setFormSent(true);
+    } catch (err) {
+      setSubmitError(
+        err?.message || 'Unable to send your message right now. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,7 +154,7 @@ export default function Contact() {
                         'Support'}{' '}
                       team
                     </strong>
-                    . We have emailed a confirmation to {formData.email}.
+                    . We have received your enquiry and will respond to {formData.email}.
                   </p>
                   <button
                     onClick={() => {
@@ -144,6 +182,7 @@ export default function Contact() {
                         className="form-input-contact"
                         placeholder="e.g. Ananya Sharma"
                         required
+                        disabled={isSubmitting}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       />
@@ -156,6 +195,7 @@ export default function Contact() {
                         className="form-input-contact"
                         placeholder="ananya@example.com"
                         required
+                        disabled={isSubmitting}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
@@ -169,6 +209,7 @@ export default function Contact() {
                         type="tel"
                         className="form-input-contact"
                         placeholder="+91 98765 XXXXX"
+                        disabled={isSubmitting}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
@@ -178,6 +219,7 @@ export default function Contact() {
                       <label className="form-label-contact">Inquiry Category *</label>
                       <select
                         className="form-input-contact"
+                        disabled={isSubmitting}
                         value={formData.department}
                         onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                       >
@@ -196,16 +238,25 @@ export default function Contact() {
                       className="form-input-contact contact-textarea"
                       placeholder="Tell us how we can assist you..."
                       required
+                      disabled={isSubmitting}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     ></textarea>
                   </div>
 
+                  {submitError && (
+                    <div className="form-error-alert" role="alert">
+                      <WarningCircle size={18} weight="bold" style={{ flexShrink: 0, marginTop: 1 }} />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     className="btn-primary contact-submit-btn"
+                    disabled={isSubmitting}
                   >
-                    <span>Submit Message</span>
+                    <span>{isSubmitting ? 'Sending Message...' : 'Submit Message'}</span>
                     <PaperPlaneTilt size={16} weight="bold" />
                   </button>
                 </form>

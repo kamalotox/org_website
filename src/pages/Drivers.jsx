@@ -9,13 +9,17 @@ import {
   CheckCircle,
   ArrowRight,
   CaretDown,
-  CaretUp
+  CaretUp,
+  WarningCircle
 } from '@phosphor-icons/react';
+import { submitWebsiteForm } from '../utils/submitForm';
 import '../styles/Drivers.css';
 
 export default function Drivers() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -41,10 +45,43 @@ export default function Drivers() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone || !formData.vehicleNo) return;
-    setFormSubmitted(true);
+    if (isSubmitting) return;
+
+    const trimmedName = formData.name.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedVehicle = formData.vehicleNo.trim().toUpperCase();
+    const trimmedCity = formData.city.trim();
+
+    if (!trimmedName || !trimmedPhone || !trimmedVehicle || !trimmedCity) {
+      setSubmitError('Please fill in all required fields before submitting.');
+      return;
+    }
+
+    setSubmitError('');
+    setIsSubmitting(true);
+
+    try {
+      await submitWebsiteForm({
+        formSource: 'drivers-page',
+        pagePath: '/drivers',
+        triggerSource: 'For Drivers Page — Verification Kit Form',
+        data: {
+          name: trimmedName,
+          phone: trimmedPhone,
+          vehicleNo: trimmedVehicle,
+          city: trimmedCity
+        }
+      });
+      setFormSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err?.message || 'Unable to submit your application right now. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -89,10 +126,22 @@ export default function Drivers() {
                   <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginBottom: 8 }}>
                     Registration Recorded!
                   </h4>
-                  <p style={{ color: '#A1A1AA', fontSize: '0.88rem' }}>
+                  <p style={{ color: '#A1A1AA', fontSize: '0.88rem', marginBottom: 16 }}>
                     Thank you, {formData.name}! Our team in {formData.city} will call you at{' '}
                     {formData.phone} when driver onboarding opens in your area.
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setSubmitError('');
+                      setFormData({ name: '', phone: '', vehicleNo: '', city: '' });
+                    }}
+                    className="btn-outline-white"
+                    style={{ fontSize: '0.86rem' }}
+                  >
+                    Register Another Vehicle
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="page-driver-form">
@@ -101,6 +150,7 @@ export default function Drivers() {
                     className="page-driver-input"
                     placeholder="Driver Full Name *"
                     required
+                    disabled={isSubmitting}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
@@ -110,6 +160,7 @@ export default function Drivers() {
                     className="page-driver-input"
                     placeholder="Mobile Phone Number *"
                     required
+                    disabled={isSubmitting}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
@@ -119,6 +170,7 @@ export default function Drivers() {
                     className="page-driver-input"
                     placeholder="Auto Registration No. (e.g. KA 01 AH 5420) *"
                     required
+                    disabled={isSubmitting}
                     value={formData.vehicleNo}
                     onChange={(e) =>
                       setFormData({ ...formData, vehicleNo: e.target.value.toUpperCase() })
@@ -130,16 +182,27 @@ export default function Drivers() {
                     className="page-driver-input"
                     placeholder="City *"
                     required
+                    disabled={isSubmitting}
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   />
+
+                  {submitError && (
+                    <div className="form-error-alert form-error-alert--dark" role="alert">
+                      <WarningCircle size={18} weight="bold" style={{ flexShrink: 0, marginTop: 1 }} />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
 
                   <button
                     type="submit"
                     className="btn-primary"
                     style={{ width: '100%', marginTop: 6 }}
+                    disabled={isSubmitting}
                   >
-                    <span>Submit Driver Application</span>
+                    <span>
+                      {isSubmitting ? 'Submitting Application...' : 'Submit Driver Application'}
+                    </span>
                     <ArrowRight size={18} weight="bold" />
                   </button>
 

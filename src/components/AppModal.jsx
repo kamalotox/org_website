@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import homeData from '../data/homeData.json';
 import statsData from '../data/statsData.json';
@@ -8,12 +9,23 @@ import {
   CheckCircle,
   DeviceMobile,
   ShieldCheck,
-  ArrowRight
+  ArrowRight,
+  WarningCircle
 } from '@phosphor-icons/react';
+import { submitWebsiteForm } from '../utils/submitForm';
+import { lockPageScroll } from '../utils/scrollLock';
 import '../styles/Modal.css';
 
-export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) {
+export default function AppModal({
+  isOpen,
+  onClose,
+  initialTab = 'passenger',
+  triggerSource = ''
+}) {
+  const location = useLocation();
   const [driverSubmitted, setDriverSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -23,17 +35,23 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
 
   useEffect(() => {
     setDriverSubmitted(false);
+    setSubmitError('');
+    setIsSubmitting(false);
   }, [initialTab, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
+    const unlockScroll = lockPageScroll();
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         onClose && onClose();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      unlockScroll();
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -43,10 +61,43 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
   const driverStatObj = statsData.summary.find((item) => item.id === 'drivers');
   const hasActiveDrivers = statsData.isLaunched && driverStatObj && driverStatObj.number > 0;
 
-  const handleDriverSubmit = (e) => {
+  const handleDriverSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.phone || !formData.vehicleNo) return;
-    setDriverSubmitted(true);
+    if (isSubmitting) return;
+
+    const trimmedName = formData.fullName.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedVehicle = formData.vehicleNo.trim().toUpperCase();
+    const trimmedCity = formData.city.trim();
+
+    if (!trimmedName || !trimmedPhone || !trimmedVehicle || !trimmedCity) {
+      setSubmitError('Please fill in all required fields before submitting.');
+      return;
+    }
+
+    setSubmitError('');
+    setIsSubmitting(true);
+
+    try {
+      await submitWebsiteForm({
+        formSource: 'driver-modal',
+        pagePath: location.pathname || '/',
+        triggerSource: triggerSource || 'Driver Registration Modal',
+        data: {
+          fullName: trimmedName,
+          phone: trimmedPhone,
+          vehicleNo: trimmedVehicle,
+          city: trimmedCity
+        }
+      });
+      setDriverSubmitted(true);
+    } catch (err) {
+      setSubmitError(
+        err?.message || 'Unable to submit your verification request right now. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -190,6 +241,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       className="form-input-driver"
                       placeholder="e.g. Ramesh Kumar"
                       required
+                      disabled={isSubmitting}
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     />
@@ -202,18 +254,20 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       className="form-input-driver"
                       placeholder="+91 98765 XXXXX"
                       required
+                      disabled={isSubmitting}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
                   </div>
 
                   <div className="form-group-driver">
-                    <label className="form-label-driver">Vehical Registration Number *</label>
+                    <label className="form-label-driver">Vehicle Registration Number *</label>
                     <input
                       type="text"
                       className="form-input-driver"
                       placeholder="e.g. KA 01 AH 5420"
                       required
+                      disabled={isSubmitting}
                       value={formData.vehicleNo}
                       onChange={(e) =>
                         setFormData({ ...formData, vehicleNo: e.target.value.toUpperCase() })
@@ -228,17 +282,28 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       className="form-input-driver"
                       placeholder="Enter your city"
                       required
+                      disabled={isSubmitting}
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     />
                   </div>
 
+                  {submitError && (
+                    <div className="form-error-alert" role="alert">
+                      <WarningCircle size={18} weight="bold" style={{ flexShrink: 0, marginTop: 1 }} />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
                     className="btn-primary"
                     style={{ width: '100%', marginTop: 8 }}
+                    disabled={isSubmitting}
                   >
-                    <span>Submit Verification Request</span>
+                    <span>
+                      {isSubmitting ? 'Submitting Request...' : 'Submit Verification Request'}
+                    </span>
                     <ArrowRight size={18} weight="bold" />
                   </button>
 

@@ -143,6 +143,34 @@ img, svg {
   background-color: var(--color-primary-hover);
 }
 
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-outline:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.form-error-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #991B1B;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.form-error-alert--dark {
+  background-color: #2A1215;
+  border-color: #7F1D1D;
+  color: #FCA5A5;
+}
+
 .btn-secondary {
   display: inline-flex;
   align-items: center;
