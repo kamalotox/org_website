@@ -19,7 +19,7 @@ This repository contains the complete frontend web application for **OTOX**, bui
 * **Routing:** [React Router DOM v6](https://reactrouter.com/)
 * **Icons:** [Lucide React](https://lucide.dev/) + Custom SVG Brand Glyphs
 * **Styling:** Modular CSS architecture (separated per page and component) with CSS Variables
-* **Typography:** `Plus Jakarta Sans` & `Space Grotesk` (Google Fonts)
+* **Typography:** `Plus Jakarta Sans` (Google Fonts)
 
 ---
 
