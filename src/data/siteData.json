@@ -1,40 +1,40 @@
 {
   "brand": {
     "name": "OTOX",
-    "fullName": "OTOX Mobility Technologies",
+    "fullName": "OTOX",
     "badge": "Trusted Local Mobility",
     "tagline": "Safe rides. Verified drivers. Smarter local travel.",
     "subheadline": "A modern mobility platform designed to make everyday auto travel safer, simpler, and more accountable through QR-based ride verification.",
     "foundedYear": "2026",
-    "copyright": "© 2026 OTOX Mobility Technologies Pvt. Ltd. All Rights Reserved."
+    "copyright": "© 2026 OTOX. All Rights Reserved."
   },
   "contact": {
     "generalEmail": "hello@otoxmobility.com",
     "supportEmail": "support@otoxmobility.com",
+    "driversEmail": "drivers@otoxmobility.com",
     "partnershipsEmail": "partners@otoxmobility.com",
     "phone": "+91 98765 43210",
     "displayPhone": "+91 98765 43210",
-    "tollFree": "1800-OTOX-SAFE",
     "officeHours": "Monday – Saturday | 9:00 AM – 6:00 PM (IST)",
     "headquarters": {
-      "city": "Bengaluru",
-      "address": "4th Floor, Transit Tech Park, Outer Ring Road",
-      "stateCountry": "Karnataka, India 560103"
+      "isEstablished": false,
+      "facility": "",
+      "city": "",
+      "address": "",
+      "stateCountry": ""
     }
   },
   "socialLinks": [
     { "name": "Twitter / X", "id": "twitter", "url": "https://x.com/otox_mobility", "handle": "@otox_mobility" },
-    { "name": "Instagram", "id": "instagram", "url": "https://instagram.com/otox_mobility", "handle": "@otox_mobility" },
     { "name": "LinkedIn", "id": "linkedin", "url": "https://linkedin.com/company/otox-mobility", "handle": "OTOX Mobility" },
-    { "name": "Facebook", "id": "facebook", "url": "https://facebook.com/otoxmobility", "handle": "OTOX Mobility" },
-    { "name": "YouTube", "id": "youtube", "url": "https://youtube.com/@otoxmobility", "handle": "@otoxmobility" },
-    { "name": "WhatsApp", "id": "whatsapp", "url": "https://wa.me/919876543210", "handle": "+91 98765 43210" }
+    { "name": "Instagram", "id": "instagram", "url": "https://instagram.com/otox_mobility", "handle": "@otox_mobility" }
   ],
   "appLinks": {
-    "playStorePassenger": "https://play.google.com/store/apps/details?id=com.otox.passenger",
-    "appStorePassenger": "https://apps.apple.com/app/otox-passenger/id000000000",
-    "playStoreDriver": "https://play.google.com/store/apps/details?id=com.otox.driver",
-    "webDemo": "/#demo"
+    "isLaunched": false,
+    "appName": "OTOX App",
+    "androidUrl": "",
+    "iosUrl": "",
+    "launchMessage": "One app for both passengers and drivers — launching soon on Android & iOS."
   },
   "navigation": [
     { "label": "Home", "path": "/" },

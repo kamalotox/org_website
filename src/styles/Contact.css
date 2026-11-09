@@ -1,8 +1,7 @@
 /* Contact Page Styles */
 .contact-hero {
   padding: 85px 0 65px;
-  background: radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.14) 0%, transparent 60%),
-              #FFFFFF;
+  background: #FFFFFF;
   border-bottom: 1px solid #ECECF0;
 }
 
@@ -19,7 +18,7 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #0A0A0E;
-  margin: 16px 0;
+  margin: 0 0 16px;
 }
 
 .contact-lead {
@@ -47,13 +46,11 @@
   padding: 30px 22px;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-normal);
 }
 
 .dept-card:hover {
   border-color: #000000;
   background: #FFFFFF;
-  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
@@ -162,7 +159,6 @@
   border: 1.5px solid #E4E4E7;
   font-size: 0.95rem;
   font-family: inherit;
-  transition: all var(--transition-fast);
   background: #FAFAFA;
 }
 
@@ -205,7 +201,6 @@
 
 .side-detail-row a {
   color: #D4D4D8;
-  transition: color var(--transition-fast);
 }
 
 .side-detail-row a:hover {

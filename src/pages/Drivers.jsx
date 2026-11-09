@@ -9,21 +9,23 @@ import {
   ShieldCheck,
   CheckCircle,
   ArrowRight,
-  Sparkles,
-  HelpCircle,
-  ChevronDown
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import '../styles/Drivers.css';
 
-export default function Drivers({ onOpenModal }) {
+export default function Drivers() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     vehicleNo: '',
-    city: 'Bengaluru'
+    city: ''
   });
+
+  const driverStatObj = statsData.summary.find((item) => item.id === 'drivers');
+  const showDriverStat = statsData.isLaunched && driverStatObj && driverStatObj.number > 0;
 
   const getPillarIcon = (name) => {
     switch (name) {
@@ -53,27 +55,24 @@ export default function Drivers({ onOpenModal }) {
         <div className="otox-container">
           <div className="drivers-hero-grid">
             <div>
-              <span className="badge-pill badge-yellow">
-                <Sparkles size={13} />
-                {driversData.hero.badge}
-              </span>
-
               <h1 className="drivers-headline">{driversData.hero.headline}</h1>
 
               <p className="drivers-subheadline">{driversData.hero.subheadline}</p>
 
               <div className="driver-hero-stats-row">
-                <div className="driver-stat-pill">
-                  <strong>12,450+</strong>
-                  <span>Active Verified Drivers</span>
-                </div>
+                {showDriverStat && (
+                  <div className="driver-stat-pill">
+                    <strong>{driverStatObj.value}</strong>
+                    <span>Verified Drivers</span>
+                  </div>
+                )}
                 <div className="driver-stat-pill">
                   <strong>0%</strong>
-                  <span>Fare Commission Deducted</span>
+                  <span>Fare Commission</span>
                 </div>
                 <div className="driver-stat-pill">
-                  <strong>24 Hours</strong>
-                  <span>Fast Verification Turnaround</span>
+                  <strong>Single App</strong>
+                  <span>Unified for Drivers & Riders</span>
                 </div>
               </div>
             </div>
@@ -82,17 +81,18 @@ export default function Drivers({ onOpenModal }) {
             <div className="driver-form-card">
               <h3 className="driver-form-card-title">Apply for OTOX Verification Kit</h3>
               <p className="driver-form-card-sub">
-                Free onboard. Get your official QR sticker and verified driver ID badge.
+                Free onboarding. Register early to receive your official QR sticker and verified Driver ID.
               </p>
 
               {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '24px 10px' }}>
                   <CheckCircle size={44} color="#10B981" style={{ margin: '0 auto 14px' }} />
                   <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginBottom: 8 }}>
-                    Application Successfully Sent!
+                    Registration Recorded!
                   </h4>
                   <p style={{ color: '#A1A1AA', fontSize: '0.88rem' }}>
-                    Welcome aboard, {formData.name}! Our representative in {formData.city} will call you at {formData.phone} within 24 hours to hand over your weatherproof QR kit.
+                    Thank you, {formData.name}! Our team in {formData.city} will call you at{' '}
+                    {formData.phone} when driver onboarding opens in your area.
                   </p>
                 </div>
               ) : (
@@ -121,34 +121,40 @@ export default function Drivers({ onOpenModal }) {
                     placeholder="Auto Registration No. (e.g. KA 01 AH 5420) *"
                     required
                     value={formData.vehicleNo}
-                    onChange={(e) => setFormData({ ...formData, vehicleNo: e.target.value.toUpperCase() })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, vehicleNo: e.target.value.toUpperCase() })
+                    }
                   />
 
-                  <select
+                  <input
+                    type="text"
                     className="page-driver-input"
+                    placeholder="City *"
+                    required
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  >
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                    <option value="Pune">Pune</option>
-                    <option value="Chennai">Chennai</option>
-                    <option value="Delhi NCR">Delhi NCR</option>
-                    <option value="Other">Other City</option>
-                  </select>
+                  />
 
                   <button
                     type="submit"
                     className="btn-primary"
                     style={{ width: '100%', marginTop: 6 }}
                   >
-                    <span>Request Free OTOX QR Kit</span>
+                    <span>Submit Driver Application</span>
                     <ArrowRight size={18} />
                   </button>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem', color: '#71717A' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      fontSize: '0.78rem',
+                      color: '#71717A'
+                    }}
+                  >
                     <ShieldCheck size={14} color="#10B981" />
-                    <span>Zero upfront fees. Free sticker replacement guarantee.</span>
+                    <span>Zero upfront fees. Keep 100% of your fare.</span>
                   </div>
                 </form>
               )}
@@ -161,7 +167,6 @@ export default function Drivers({ onOpenModal }) {
       <section className="driver-pillars-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">Driver Benefits</span>
             <h2 className="section-title">{driversData.whyJoin.title}</h2>
             <p className="section-lead">{driversData.whyJoin.subtitle}</p>
           </div>
@@ -182,7 +187,6 @@ export default function Drivers({ onOpenModal }) {
       <section className="driver-steps-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">Simple Process</span>
             <h2 className="section-title">{driversData.howToJoin.title}</h2>
             <p className="section-lead">{driversData.howToJoin.subtitle}</p>
           </div>
@@ -199,39 +203,12 @@ export default function Drivers({ onOpenModal }) {
         </div>
       </section>
 
-      {/* 4. PERKS & GUARANTEES */}
-      <section className="driver-perks-section">
-        <div className="otox-container">
-          <div className="section-header-center">
-            <span className="badge-pill badge-yellow" style={{ marginBottom: 12 }}>
-              The OTOX Driver Charter
-            </span>
-            <h2 className="section-title" style={{ color: '#FFFFFF' }}>
-              Built With Respect for Auto Drivers
-            </h2>
-            <p style={{ color: '#A1A1AA' }}>
-              We believe technology should empower you, not penalize you.
-            </p>
-          </div>
-
-          <div className="perks-checklist-grid">
-            {driversData.driverPerks.map((perk, i) => (
-              <div key={i} className="perk-pill-card">
-                <CheckCircle size={20} color="#FFC107" style={{ flexShrink: 0 }} />
-                <span>{perk}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. DRIVER FAQS */}
+      {/* 4. DRIVER FAQS */}
       <section className="faq-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">Driver FAQs</span>
             <h2 className="section-title">Common Driver Inquiries</h2>
-            <p className="section-lead">Clear answers on verification, earnings, and stickers.</p>
+            <p className="section-lead">Clear answers on verification, fares, and QR kits.</p>
           </div>
 
           <div className="faq-accordion-list">
@@ -242,14 +219,11 @@ export default function Drivers({ onOpenModal }) {
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                 >
                   <span>{faq.q}</span>
-                  <ChevronDown
-                    size={20}
-                    style={{
-                      transform: openFaqIndex === idx ? 'rotate(180deg)' : 'none',
-                      transition: 'transform 0.2s ease',
-                      flexShrink: 0
-                    }}
-                  />
+                  {openFaqIndex === idx ? (
+                    <ChevronUp size={20} style={{ flexShrink: 0 }} />
+                  ) : (
+                    <ChevronDown size={20} style={{ flexShrink: 0 }} />
+                  )}
                 </button>
                 {openFaqIndex === idx && (
                   <div className="faq-answer-pane">

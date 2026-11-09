@@ -1,6 +1,6 @@
 import React from 'react';
 import privacyData from '../data/privacyPolicy.json';
-import { ShieldCheck, Calendar, Lock } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import '../styles/Legal.css';
 
 export default function PrivacyPolicy() {
@@ -9,11 +9,6 @@ export default function PrivacyPolicy() {
       {/* Header */}
       <section className="legal-page-header">
         <div className="otox-container legal-header-content">
-          <span className="badge-pill badge-yellow">
-            <Lock size={13} />
-            {privacyData.badge}
-          </span>
-
           <h1 className="legal-page-title">{privacyData.title}</h1>
 
           <div className="legal-meta-row">
@@ -21,8 +16,6 @@ export default function PrivacyPolicy() {
               <Calendar size={14} style={{ display: 'inline', marginRight: 4 }} />
               Last Updated: {privacyData.lastUpdated}
             </span>
-            <span>•</span>
-            <span>Effective: {privacyData.effectiveDate}</span>
           </div>
 
           <div className="legal-summary-callout">
@@ -89,9 +82,11 @@ export default function PrivacyPolicy() {
                           {sec.contactDetails.email}
                         </a>
                       </p>
-                      <p style={{ marginTop: 6, color: '#A1A1AA', fontSize: '0.9rem' }}>
-                        <strong>Office:</strong> {sec.contactDetails.address}
-                      </p>
+                      {sec.contactDetails.address && (
+                        <p style={{ marginTop: 6, color: '#A1A1AA', fontSize: '0.9rem' }}>
+                          <strong>Office:</strong> {sec.contactDetails.address}
+                        </p>
+                      )}
                     </div>
                   )}
                 </article>

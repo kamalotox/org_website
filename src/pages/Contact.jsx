@@ -11,9 +11,7 @@ import {
   Clock,
   MapPin,
   Send,
-  CheckCircle,
-  Sparkles,
-  ArrowRight
+  CheckCircle
 } from 'lucide-react';
 import '../styles/Contact.css';
 
@@ -53,11 +51,6 @@ export default function Contact() {
       {/* 1. HERO */}
       <section className="contact-hero">
         <div className="otox-container contact-hero-content">
-          <span className="badge-pill badge-yellow">
-            <Sparkles size={13} />
-            {contactData.hero.badge}
-          </span>
-
           <h1 className="contact-headline">{contactData.hero.headline}</h1>
 
           <p className="contact-lead">{contactData.hero.subheadline}</p>
@@ -90,7 +83,7 @@ export default function Contact() {
             <div className="contact-form-box">
               <h3 className="contact-form-title">Send a Direct Message</h3>
               <p className="contact-form-subtitle">
-                Our support and partnership desks respond within 2 to 4 business hours.
+                Our support and partnership teams respond within 2 to 4 business hours.
               </p>
 
               {formSent ? (
@@ -120,7 +113,7 @@ export default function Contact() {
                         'Support'}{' '}
                       team
                     </strong>
-                    . We have emailed a receipt to {formData.email}.
+                    . We have emailed a confirmation to {formData.email}.
                   </p>
                   <button
                     onClick={() => {
@@ -217,23 +210,21 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Right: Contact Information Sidebar */}
+            {/* Right: Contact Information Sidebar (sourced from siteData.json) */}
             <div className="contact-sidebar-card">
               <div>
                 <h4 className="side-block-title">
-                  <Mail size={20} color="#FFC107" />
-                  Direct Channels
+                  <Phone size={20} color="#FFC107" />
+                  Phone & Helpdesk
                 </h4>
-                {contactData.contactInfo.emails.map((item, idx) => (
-                  <div key={idx} className="side-detail-row">
-                    <span style={{ color: '#71717A', width: 120 }}>{item.label}:</span>
-                    <a href={`mailto:${item.value}`}>{item.value}</a>
-                  </div>
-                ))}
                 <div className="side-detail-row">
-                  <span style={{ color: '#71717A', width: 120 }}>Phone:</span>
-                  <a href={`tel:${contactData.contactInfo.phone}`}>
-                    {contactData.contactInfo.phone}
+                  <span style={{ color: '#71717A', width: 90 }}>Phone:</span>
+                  <a href={`tel:${siteData.contact.phone}`}>{siteData.contact.displayPhone}</a>
+                </div>
+                <div className="side-detail-row">
+                  <span style={{ color: '#71717A', width: 90 }}>Support:</span>
+                  <a href={`mailto:${siteData.contact.supportEmail}`}>
+                    {siteData.contact.supportEmail}
                   </a>
                 </div>
               </div>
@@ -245,34 +236,36 @@ export default function Contact() {
                 </h4>
                 <div className="hours-badge-box">
                   <p style={{ color: '#F4F4F5', fontWeight: 700, fontSize: '0.95rem' }}>
-                    {contactData.contactInfo.officeHours}
+                    {siteData.contact.officeHours}
                   </p>
                   <p style={{ color: '#A1A1AA', fontSize: '0.82rem', marginTop: 4 }}>
-                    Emergency safety monitoring is active 24/7 for active verified rides.
+                    We review general enquiries, driver applications, and support messages during working hours.
                   </p>
                 </div>
               </div>
 
-              <div>
-                <h4 className="side-block-title">
-                  <MapPin size={20} color="#FFC107" />
-                  Headquarters
-                </h4>
-                <p style={{ color: '#E4E4E7', fontSize: '0.92rem', lineHeight: 1.6 }}>
-                  {contactData.contactInfo.address.facility}
-                  <br />
-                  {contactData.contactInfo.address.line1}
-                  <br />
-                  {contactData.contactInfo.address.cityState}
-                </p>
-              </div>
+              {siteData.contact.headquarters.isEstablished && siteData.contact.headquarters.address && (
+                <div>
+                  <h4 className="side-block-title">
+                    <MapPin size={20} color="#FFC107" />
+                    Office Location
+                  </h4>
+                  <p style={{ color: '#E4E4E7', fontSize: '0.92rem', lineHeight: 1.6 }}>
+                    {siteData.contact.headquarters.facility}
+                    <br />
+                    {siteData.contact.headquarters.address}
+                    <br />
+                    {siteData.contact.headquarters.stateCountry}
+                  </p>
+                </div>
+              )}
 
               <div className="partnership-alert-card">
-                <h5 style={{ fontWeight: 800, color: '#FFC107', marginBottom: 4 }}>
-                  Partnerships & Fleet Integrations
+                <h5 style={{ fontWeight: 800, color: '#FFC107', marginBottom: 6 }}>
+                  {contactData.closing.headline}
                 </h5>
-                <p style={{ fontSize: '0.86rem', color: '#E4E4E7', lineHeight: 1.5 }}>
-                  {contactData.closing.partnershipNote}
+                <p style={{ fontSize: '0.86rem', color: '#E4E4E7', lineHeight: 1.55 }}>
+                  {contactData.closing.tagline}
                 </p>
               </div>
             </div>

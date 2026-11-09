@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import siteData from '../data/siteData.json';
-import { Menu, X, QrCode, UserCheck, Shield } from 'lucide-react';
+import { Menu, X, QrCode, UserCheck } from 'lucide-react';
 import '../styles/Header.css';
 
 export default function Header({ onOpenModal }) {
@@ -27,15 +27,9 @@ export default function Header({ onOpenModal }) {
       <div className="otox-container header-inner">
         {/* Brand Logo */}
         <Link to="/" className="brand-logo-link" aria-label="OTOX Home">
-          <div className="logo-symbol">
-            <span className="logo-symbol-inner">O</span>
-          </div>
-          <div className="brand-text-group">
-            <span className="brand-name">
-              OT<span>O</span>X
-            </span>
-            <span className="brand-subline">Mobility Verified</span>
-          </div>
+          <span className="brand-name">
+            OT<span>O</span>X
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -56,11 +50,6 @@ export default function Header({ onOpenModal }) {
 
         {/* Desktop Actions */}
         <div className="header-actions-desktop">
-          <div className="live-beacon-pill" title="Real-time ride verification is active">
-            <span className="beacon-dot"></span>
-            <span>Live Network</span>
-          </div>
-
           <button
             onClick={() => onOpenModal && onOpenModal('passenger')}
             className="btn-outline"
@@ -70,14 +59,14 @@ export default function Header({ onOpenModal }) {
             <span>Scan QR Demo</span>
           </button>
 
-          <Link
-            to="/drivers"
+          <button
+            onClick={() => onOpenModal && onOpenModal('driver')}
             className="btn-primary"
             style={{ padding: '9px 20px', fontSize: '0.9rem' }}
           >
             <UserCheck size={16} />
             <span>Become a Driver</span>
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -134,14 +123,17 @@ export default function Header({ onOpenModal }) {
               <QrCode size={18} />
               <span>Get Started / Scan Demo</span>
             </button>
-            <Link
-              to="/drivers"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenModal && onOpenModal('driver');
+              }}
               className="btn-secondary"
               style={{ width: '100%', textAlign: 'center' }}
             >
               <UserCheck size={18} />
               <span>Become a Verified Driver</span>
-            </Link>
+            </button>
           </div>
         </div>
       </div>

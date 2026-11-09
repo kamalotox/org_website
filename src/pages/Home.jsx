@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import homeData from '../data/homeData.json';
 import statsData from '../data/statsData.json';
-import siteData from '../data/siteData.json';
 import {
   QrCode,
   ShieldCheck,
@@ -12,15 +11,10 @@ import {
   History,
   ShieldAlert,
   Zap,
-  Headphones,
   ArrowRight,
   ChevronDown,
-  CheckCircle2,
-  Sparkles,
-  Award,
-  Smartphone,
-  Star,
-  Users
+  ChevronUp,
+  CheckCircle2
 } from 'lucide-react';
 import '../styles/Home.css';
 
@@ -28,7 +22,6 @@ export default function Home({ onOpenModal }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [simulatedScanned, setSimulatedScanned] = useState(false);
 
-  // Map icon strings to Lucide components
   const getIcon = (iconName) => {
     switch (iconName) {
       case 'QrCode':
@@ -47,8 +40,6 @@ export default function Home({ onOpenModal }) {
         return <ShieldAlert size={24} />;
       case 'Zap':
         return <Zap size={24} />;
-      case 'Headphones':
-        return <Headphones size={24} />;
       default:
         return <ShieldCheck size={24} />;
     }
@@ -58,6 +49,10 @@ export default function Home({ onOpenModal }) {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
 
+  const sampleDriver = homeData.interactiveDemo.sampleDriver;
+  const activeStats = statsData.summary.filter((stat) => stat.number > 0);
+  const showStatsSection = statsData.isLaunched && activeStats.length > 0;
+
   return (
     <div className="home-page-container">
       {/* 1. HERO SECTION */}
@@ -66,17 +61,6 @@ export default function Home({ onOpenModal }) {
           <div className="hero-grid">
             {/* Left Content */}
             <div className="hero-content">
-              <div className="hero-badge-container">
-                <span className="badge-pill badge-yellow">
-                  <Sparkles size={13} />
-                  {homeData.hero.badge}
-                </span>
-                <span className="badge-pill badge-green">
-                  <ShieldCheck size={13} />
-                  QR 2.0 Security
-                </span>
-              </div>
-
               <h1 className="hero-headline">
                 Safe rides. <span className="highlight-yellow">Verified drivers.</span> Smarter local travel.
               </h1>
@@ -94,164 +78,111 @@ export default function Home({ onOpenModal }) {
                   <span>{homeData.hero.primaryCta}</span>
                 </button>
 
-                <Link to="/drivers" className="btn-secondary">
+                <button
+                  onClick={() => onOpenModal && onOpenModal('driver')}
+                  className="btn-secondary"
+                >
                   <UserCheck size={18} />
                   <span>{homeData.hero.secondaryCta}</span>
-                </Link>
-              </div>
-
-              <div className="hero-trust-bar">
-                <div className="trust-avatar-group">
-                  <div className="trust-avatar">⭐</div>
-                  <div className="trust-avatar">✓</div>
-                  <div className="trust-avatar">⚡</div>
-                </div>
-                <span>
-                  <strong>4.9/5 Rating</strong> • {homeData.hero.statsHighlight}
-                </span>
+                </button>
               </div>
             </div>
 
-            {/* Right Visual Card (Uber Dark Mode + Rapido Taxi Glow) */}
+            {/* Right Visual Card (QR Preview) */}
             <div className="hero-visual-card">
-              <div className="hero-card-glow"></div>
-
               <div className="hero-card-header">
-                <div className="hero-card-brand">
-                  <span style={{ fontWeight: 800, fontSize: '1.2rem', color: '#FFC107' }}>
-                    OTOX VERIFY
-                  </span>
-                  <span className="hero-auto-pill">Auto Fleet #8921</span>
+                <span className="hero-card-title">Ride Verification</span>
+                <span className={`hero-card-status ${simulatedScanned ? 'verified' : ''}`}>
+                  {simulatedScanned ? '✓ Verified Session' : 'Sample Preview'}
+                </span>
+              </div>
+
+              <div className="hero-qr-identity-row">
+                <div className="hero-qr-tile" aria-hidden="true">
+                  <QrCode size={48} color="#000000" />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem', color: '#10B981' }}>
-                  <span className="beacon-dot"></span>
-                  Active Handshake
+
+                <div className="driver-info-meta">
+                  <div className="driver-name-title">
+                    <span>{sampleDriver.name}</span>
+                    <ShieldCheck size={17} className="verified-icon-check" />
+                  </div>
+                  <div className="driver-plate-badge">{sampleDriver.vehicleNo}</div>
+                  <div className="driver-id-meta">ID: {sampleDriver.id}</div>
                 </div>
               </div>
 
-              <div className="hero-ride-mockup">
-                <div className="mockup-driver-row">
-                  <div className="driver-avatar-circle">
-                    RK
-                  </div>
-                  <div className="driver-info-meta">
-                    <div className="driver-name-title">
-                      {homeData.interactiveDemo.sampleDriver.name}
-                      <ShieldCheck size={18} className="verified-icon-check" />
-                    </div>
-                    <div className="driver-vehicle-tag">
-                      {homeData.interactiveDemo.sampleDriver.vehicleNo}
-                    </div>
-                    <div style={{ fontSize: '0.78rem', color: '#A1A1AA', marginTop: 2 }}>
-                      Badge: {homeData.interactiveDemo.sampleDriver.id} • ⭐ {homeData.interactiveDemo.sampleDriver.rating} ({homeData.interactiveDemo.sampleDriver.ridesCompleted} rides)
-                    </div>
-                  </div>
+              <div className="ride-spec-list">
+                <div className="ride-spec-row">
+                  <span className="ride-spec-label">Driver & Vehicle</span>
+                  <span className="ride-spec-value">{sampleDriver.status}</span>
                 </div>
-
-                <div className="ride-status-tracker">
-                  <div className="status-step-row">
-                    <span style={{ color: '#D4D4D8' }}>Passenger Verification:</span>
-                    <span className="status-badge-active">
-                      {simulatedScanned ? '✓ Linked & Tracked' : 'Ready to Scan'}
-                    </span>
-                  </div>
-                  <div className="status-step-row">
-                    <span style={{ color: '#71717A' }}>Government ID / RC:</span>
-                    <span style={{ color: '#E4E4E7', fontWeight: 600 }}>100% Verified</span>
-                  </div>
-                  <div className="status-step-row">
-                    <span style={{ color: '#71717A' }}>Handshake Speed:</span>
-                    <span style={{ color: '#FFC107', fontWeight: 600 }}>{statsData.quickMetrics.verificationSpeed}</span>
-                  </div>
+                <div className="ride-spec-row">
+                  <span className="ride-spec-label">Session Status</span>
+                  <span className={`ride-spec-value ${simulatedScanned ? 'text-emerald' : ''}`}>
+                    {simulatedScanned ? 'Linked & Tracked' : 'Scan QR inside auto'}
+                  </span>
+                </div>
+                <div className="ride-spec-row">
+                  <span className="ride-spec-label">Commute Record</span>
+                  <span className={`ride-spec-value ${simulatedScanned ? 'text-gold' : ''}`}>
+                    {simulatedScanned ? 'Saved to Ride History' : 'Available after scan'}
+                  </span>
                 </div>
               </div>
 
               <button
-                className="hero-interactive-demo-btn"
+                className={`hero-interactive-demo-btn ${simulatedScanned ? 'reset-mode' : ''}`}
                 onClick={() => setSimulatedScanned(!simulatedScanned)}
               >
                 <QrCode size={18} />
-                <span>
-                  {simulatedScanned ? 'Reset Ride Simulation' : 'Tap to Simulate QR Ride Scan'}
-                </span>
+                <span>{simulatedScanned ? 'Reset Preview' : 'Simulate QR Ride Scan'}</span>
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. DYNAMIC LIVE STATS COUNTER SECTION (Data from JSON / ready for real DB) */}
-      <section className="stats-section">
-        <div className="otox-container">
-          <div className="stats-grid">
-            {statsData.summary.map((stat) => (
-              <div key={stat.id} className="stat-card">
-                <span className="stat-badge">{stat.badge}</span>
-                <div className="stat-number">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-                <div className="stat-sublabel">{stat.sublabel}</div>
-              </div>
-            ))}
+      {/* 2. DYNAMIC STATS SECTION (Only rendered once app is launched & real counts > 0) */}
+      {showStatsSection && (
+        <section className="stats-section">
+          <div className="otox-container">
+            <div className="stats-grid">
+              {activeStats.map((stat) => (
+                <div key={stat.id} className="stat-card">
+                  <div className="stat-number">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                  <div className="stat-sublabel">{stat.sublabel}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 3. WHY WE BUILT THIS SECTION */}
       <section className="why-section">
         <div className="otox-container">
           <div className="why-grid">
             <div>
-              <span className="section-tag">{homeData.whyWeBuiltThis.tag}</span>
               <h2 className="section-title">{homeData.whyWeBuiltThis.title}</h2>
               <p className="section-lead">{homeData.whyWeBuiltThis.headline}</p>
               <p className="section-text">{homeData.whyWeBuiltThis.paragraph1}</p>
               <p className="section-text">
-                <strong>{homeData.whyWeBuiltThis.paragraph2}</strong> {homeData.whyWeBuiltThis.paragraph3}
+                <strong>{homeData.whyWeBuiltThis.paragraph2}</strong>{' '}
+                {homeData.whyWeBuiltThis.paragraph3}
               </p>
-
-              <div className="why-takeaways-list">
-                {homeData.whyWeBuiltThis.keyTakeaways.map((item, idx) => (
-                  <div key={idx} className="takeaway-item">
-                    <div>
-                      <h4 className="takeaway-title">{item.title}</h4>
-                      <p className="takeaway-desc">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* Visual Panel */}
-            <div className="why-visual-panel">
-              <span className="why-panel-badge">
-                <Award size={16} />
-                Reinventing Street Hailing
-              </span>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: 16 }}>
-                Street Hailing + Digital Accountability
-              </h3>
-              <p style={{ color: '#A1A1AA', lineHeight: 1.6, fontSize: '0.98rem' }}>
-                You don't need to change where you catch an auto. You don't need to wait 15 minutes for a cab driver to accept your ride. Just hail any passing auto, scan the QR code on the partition screen, and your journey is instantly recorded, mapped, and protected.
-              </p>
-
-              <div className="why-metric-showcase">
-                <div className="why-metric-box">
-                  <div className="why-metric-val">{statsData.quickMetrics.verificationSpeed}</div>
-                  <div className="why-metric-title">Average QR handshake</div>
+            <div className="why-takeaways-list">
+              {homeData.whyWeBuiltThis.keyTakeaways.map((item, idx) => (
+                <div key={idx} className="takeaway-item">
+                  <div>
+                    <h4 className="takeaway-title">{item.title}</h4>
+                    <p className="takeaway-desc">{item.description}</p>
+                  </div>
                 </div>
-                <div className="why-metric-box">
-                  <div className="why-metric-val">{statsData.quickMetrics.safetyRating}</div>
-                  <div className="why-metric-title">Passenger safety score</div>
-                </div>
-                <div className="why-metric-box">
-                  <div className="why-metric-val">{statsData.quickMetrics.verifiedVehicleCoverage}</div>
-                  <div className="why-metric-title">Verified vehicle match</div>
-                </div>
-                <div className="why-metric-box">
-                  <div className="why-metric-val">{statsData.quickMetrics.supportResponse}</div>
-                  <div className="why-metric-title">Emergency helpdesk response</div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -261,7 +192,6 @@ export default function Home({ onOpenModal }) {
       <section className="how-section" id="how-it-works">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">{homeData.howItWorks.tag}</span>
             <h2 className="section-title">{homeData.howItWorks.title}</h2>
             <p className="section-lead">{homeData.howItWorks.subtitle}</p>
           </div>
@@ -291,7 +221,6 @@ export default function Home({ onOpenModal }) {
       <section className="features-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">{homeData.features.tag}</span>
             <h2 className="section-title">{homeData.features.title}</h2>
             <p className="section-lead">{homeData.features.subtitle}</p>
           </div>
@@ -299,9 +228,7 @@ export default function Home({ onOpenModal }) {
           <div className="features-grid">
             {homeData.features.items.map((feat) => (
               <div key={feat.id} className="feature-box">
-                <div className="feature-icon-wrapper">
-                  {getIcon(feat.icon)}
-                </div>
+                <div className="feature-icon-wrapper">{getIcon(feat.icon)}</div>
                 <h4 className="feature-item-title">{feat.title}</h4>
                 <p className="feature-item-desc">{feat.description}</p>
               </div>
@@ -310,13 +237,44 @@ export default function Home({ onOpenModal }) {
         </div>
       </section>
 
-      {/* 6. DESIGNED FOR EVERYONE: PASSENGERS & DRIVERS */}
+      {/* 6. WHAT SETS US APART */}
+      <section className="difference-section">
+        <div className="otox-container">
+          <div className="section-header-center">
+            <h2 className="section-title">{homeData.whatSetsUsApart.title}</h2>
+            <p className="section-lead">{homeData.whatSetsUsApart.subtitle}</p>
+          </div>
+
+          <div className="difference-grid">
+            {homeData.whatSetsUsApart.columns.map((col, idx) => (
+              <div
+                key={col.id}
+                className={`difference-card ${idx === 1 ? 'highlight-card' : ''}`}
+              >
+                <h3 className="difference-title">{col.title}</h3>
+                <p className="difference-desc">{col.description}</p>
+                <ul className="difference-list">
+                  {col.points.map((point, pIdx) => (
+                    <li key={pIdx} className="difference-list-item">
+                      <CheckCircle2
+                        size={18}
+                        color={idx === 1 ? '#10B981' : '#52525B'}
+                        style={{ flexShrink: 0, marginTop: 2 }}
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. DESIGNED FOR EVERYONE: PASSENGERS & DRIVERS */}
       <section className="dual-ecosystem-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="badge-pill badge-yellow" style={{ marginBottom: 12 }}>
-              {homeData.forBothSides.tag}
-            </span>
             <h2 className="section-title" style={{ color: '#FFFFFF' }}>
               {homeData.forBothSides.title}
             </h2>
@@ -328,12 +286,8 @@ export default function Home({ onOpenModal }) {
           <div className="dual-grid">
             {/* For Passengers */}
             <div className="ecosystem-panel">
-              <div className="ecosystem-badge-row">
-                <span className="badge-pill badge-green">
-                  {homeData.forBothSides.passengers.badge}
-                </span>
-              </div>
-              <h3 className="ecosystem-title">{homeData.forBothSides.passengers.headline}</h3>
+              <h3 className="ecosystem-title">{homeData.forBothSides.passengers.badge}</h3>
+              <p className="ecosystem-lead">{homeData.forBothSides.passengers.headline}</p>
               <p className="ecosystem-desc">{homeData.forBothSides.passengers.description}</p>
 
               <ul className="ecosystem-checklist">
@@ -357,12 +311,8 @@ export default function Home({ onOpenModal }) {
 
             {/* For Drivers */}
             <div className="ecosystem-panel driver-theme">
-              <div className="ecosystem-badge-row">
-                <span className="badge-pill badge-yellow">
-                  {homeData.forBothSides.drivers.badge}
-                </span>
-              </div>
-              <h3 className="ecosystem-title">{homeData.forBothSides.drivers.headline}</h3>
+              <h3 className="ecosystem-title">{homeData.forBothSides.drivers.badge}</h3>
+              <p className="ecosystem-lead">{homeData.forBothSides.drivers.headline}</p>
               <p className="ecosystem-desc">{homeData.forBothSides.drivers.description}</p>
 
               <ul className="ecosystem-checklist">
@@ -391,7 +341,6 @@ export default function Home({ onOpenModal }) {
       <section className="faq-section">
         <div className="otox-container">
           <div className="section-header-center">
-            <span className="section-tag">{homeData.faq.tag}</span>
             <h2 className="section-title">{homeData.faq.title}</h2>
             <p className="section-lead">{homeData.faq.subtitle}</p>
           </div>
@@ -408,14 +357,11 @@ export default function Home({ onOpenModal }) {
                   aria-expanded={openFaqIndex === index}
                 >
                   <span>{item.question}</span>
-                  <ChevronDown
-                    size={20}
-                    style={{
-                      transform: openFaqIndex === index ? 'rotate(180deg)' : 'none',
-                      transition: 'transform 0.2s ease',
-                      flexShrink: 0
-                    }}
-                  />
+                  {openFaqIndex === index ? (
+                    <ChevronUp size={20} style={{ flexShrink: 0 }} />
+                  ) : (
+                    <ChevronDown size={20} style={{ flexShrink: 0 }} />
+                  )}
                 </button>
 
                 {openFaqIndex === index && (
@@ -433,9 +379,6 @@ export default function Home({ onOpenModal }) {
       <section className="closing-banner-section">
         <div className="otox-container">
           <div className="closing-inner-box">
-            <span className="badge-pill badge-yellow">
-              OTOX Movement
-            </span>
             <h2 className="closing-title">{homeData.closing.headline}</h2>
             <p className="closing-sub">
               {homeData.closing.tagline} {homeData.closing.subheadline}
@@ -450,10 +393,13 @@ export default function Home({ onOpenModal }) {
                 <span>{homeData.closing.primaryCta}</span>
               </button>
 
-              <Link to="/drivers" className="btn-outline-white">
+              <button
+                onClick={() => onOpenModal && onOpenModal('driver')}
+                className="btn-secondary"
+              >
                 <UserCheck size={18} />
                 <span>{homeData.closing.secondaryCta}</span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

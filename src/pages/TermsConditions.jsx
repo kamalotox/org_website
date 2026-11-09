@@ -1,6 +1,6 @@
 import React from 'react';
 import termsData from '../data/termsConditions.json';
-import { FileText, Calendar, Scale } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import '../styles/Legal.css';
 
 export default function TermsConditions() {
@@ -9,11 +9,6 @@ export default function TermsConditions() {
       {/* Header */}
       <section className="legal-page-header">
         <div className="otox-container legal-header-content">
-          <span className="badge-pill badge-yellow">
-            <Scale size={13} />
-            {termsData.badge}
-          </span>
-
           <h1 className="legal-page-title">{termsData.title}</h1>
 
           <div className="legal-meta-row">
@@ -21,8 +16,6 @@ export default function TermsConditions() {
               <Calendar size={14} style={{ display: 'inline', marginRight: 4 }} />
               Last Revised: {termsData.lastUpdated}
             </span>
-            <span>•</span>
-            <span>Applicable Jurisdiction: Bengaluru, India</span>
           </div>
 
           <div className="legal-summary-callout">

@@ -2,8 +2,7 @@
   "title": "Privacy Policy",
   "lastUpdated": "November 1, 2026",
   "effectiveDate": "November 1, 2026",
-  "badge": "Transparency & Privacy First",
-  "summary": "This Privacy Policy explains how OTOX Mobility Technologies ('OTOX', 'we', 'our', or 'us') collects, uses, protects, and discloses personal information when you use our mobile applications, QR-based ride verification system, websites, and associated services.",
+  "summary": "This Privacy Policy explains how OTOX ('we', 'our', or 'us') collects, uses, protects, and discloses personal information when you use our mobile application, QR-based ride verification system, website, and associated services.",
   "sections": [
     {
       "id": "intro",
@@ -81,11 +80,10 @@
     },
     {
       "id": "contact-privacy",
-      "heading": "7. Contact Our Data Protection Officer",
-      "content": "If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please contact our Data Protection Desk at:",
+      "heading": "7. Contact Regarding Privacy",
+      "content": "If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please reach out to us at:",
       "contactDetails": {
-        "email": "privacy@otoxmobility.com",
-        "address": "OTOX Mobility Technologies Pvt. Ltd., Outer Ring Road, Bangalore, KA - 560103, India."
+        "email": "privacy@otoxmobility.com"
       }
     }
   ]

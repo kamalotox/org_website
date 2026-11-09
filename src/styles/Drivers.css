@@ -1,9 +1,7 @@
 /* Drivers Page Styles */
 .drivers-hero {
   padding: 85px 0 75px;
-  background: radial-gradient(circle at 15% 20%, rgba(255, 193, 7, 0.18) 0%, transparent 60%),
-              radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.04) 0%, transparent 50%),
-              #FFFFFF;
+  background: #FFFFFF;
   border-bottom: 1px solid #ECECF0;
 }
 
@@ -21,7 +19,7 @@
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #0A0A0D;
-  margin: 16px 0;
+  margin: 0 0 16px;
 }
 
 .drivers-subheadline {
@@ -95,7 +93,6 @@
   color: #FFFFFF;
   font-size: 0.95rem;
   font-family: inherit;
-  transition: all var(--transition-fast);
 }
 
 .page-driver-input:focus {
@@ -123,13 +120,11 @@
   padding: 30px 22px;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-normal);
 }
 
 .driver-pillar-box:hover {
   border-color: #000000;
   background: #FFFFFF;
-  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
@@ -179,12 +174,11 @@
   padding: 30px 24px;
   border: 1px solid #E4E4E7;
   position: relative;
-  transition: all var(--transition-fast);
 }
 
 .driver-step-tile:hover {
   border-color: var(--color-primary);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .driver-step-badge {
@@ -215,32 +209,53 @@
   color: #52525B;
 }
 
-/* Perks & FAQ */
-.driver-perks-section {
-  padding: 90px 0;
-  background: #0D0D11;
-  color: #FFFFFF;
+/* Driver FAQ Section */
+.faq-section {
+  padding: 96px 0;
+  background: #FFFFFF;
 }
 
-.perks-checklist-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: 900px;
-  margin: 30px auto 0;
+.faq-accordion-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.perk-pill-card {
+.faq-item-card {
+  border: 1px solid #E4E4E7;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-item-card.open {
+  border-color: #000000;
+}
+
+.faq-trigger-btn {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: #17171E;
-  border: 1px solid #282835;
-  padding: 18px 22px;
-  border-radius: var(--radius-md);
-  font-size: 0.95rem;
-  color: #F4F4F5;
-  font-weight: 600;
+  justify-content: space-between;
+  padding: 22px 24px;
+  text-align: left;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0A0A0D;
+  background: #FFFFFF;
+}
+
+.faq-trigger-btn:hover {
+  background: #FAFAFA;
+}
+
+.faq-answer-pane {
+  padding: 16px 24px 22px;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: #52525B;
+  border-top: 1px solid #F4F4F5;
 }
 
 /* Responsive */
@@ -253,9 +268,6 @@
   }
   .driver-steps-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .perks-checklist-grid {
-    grid-template-columns: 1fr;
   }
 }
 

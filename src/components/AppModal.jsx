@@ -1,28 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import siteData from '../data/siteData.json';
+import homeData from '../data/homeData.json';
+import statsData from '../data/statsData.json';
 import {
   X,
   QrCode,
   CheckCircle,
   Smartphone,
   ShieldCheck,
-  UserCheck,
-  ArrowRight,
-  Sparkles
+  ArrowRight
 } from 'lucide-react';
 import '../styles/Modal.css';
 
 export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) {
-  const [tab, setTab] = useState(initialTab);
   const [driverSubmitted, setDriverSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
     vehicleNo: '',
-    city: 'Bengaluru'
+    city: ''
   });
 
+  useEffect(() => {
+    setDriverSubmitted(false);
+  }, [initialTab, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose && onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
+
+  const isDriverMode = initialTab === 'driver';
+  const sampleDriver = homeData.interactiveDemo.sampleDriver;
+  const driverStatObj = statsData.summary.find((item) => item.id === 'drivers');
+  const hasActiveDrivers = statsData.isLaunched && driverStatObj && driverStatObj.number > 0;
 
   const handleDriverSubmit = (e) => {
     e.preventDefault();
@@ -38,102 +57,103 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
         </button>
 
         <div className="modal-body">
-          <div className="modal-badge-wrapper">
-            <span className="badge-pill badge-yellow">
-              <Sparkles size={12} />
-              OTOX Connected Mobility
-            </span>
-          </div>
-
           <h3 className="modal-title">
-            {tab === 'passenger' ? 'Scan & Verify Your Ride' : 'Register as an OTOX Driver'}
+            {isDriverMode ? 'Register as an OTOX Driver' : 'Scan & Verify Your Ride'}
           </h3>
           <p className="modal-subtitle">
-            {tab === 'passenger'
-              ? 'Experience the simplicity of QR verification or download the commuter app for ride history.'
-              : 'Join over 12,450+ verified auto drivers earning greater passenger trust and digital credibility.'}
+            {isDriverMode
+              ? hasActiveDrivers
+                ? `Join ${driverStatObj.value} verified auto drivers building greater passenger trust.`
+                : 'Register your auto early to receive your OTOX QR sticker and join our verified driver network.'
+              : 'Preview how QR-based ride verification works inside the OTOX app.'}
           </p>
 
-          {/* Tab Selector */}
-          <div className="modal-tabs">
-            <button
-              className={`modal-tab-btn ${tab === 'passenger' ? 'active' : ''}`}
-              onClick={() => {
-                setTab('passenger');
-                setDriverSubmitted(false);
-              }}
-            >
-              Passenger App & Demo
-            </button>
-            <button
-              className={`modal-tab-btn ${tab === 'driver' ? 'active' : ''}`}
-              onClick={() => setTab('driver')}
-            >
-              Driver Registration
-            </button>
-          </div>
-
-          {tab === 'passenger' ? (
+          {!isDriverMode ? (
             <div>
               {/* Interactive QR Simulation */}
               <div className="qr-sim-box">
                 <div className="qr-sim-header">
                   <span className="qr-sim-status">
                     <CheckCircle size={15} />
-                    Live Ride Handshake Simulated
+                    QR Verification Preview
                   </span>
-                  <span style={{ fontSize: '0.75rem', color: '#71717A' }}>3-Second Scan</span>
+                  <span style={{ fontSize: '0.75rem', color: '#71717A' }}>Sample Trip</span>
                 </div>
 
                 <div className="qr-scanner-card">
                   <div className="qr-graphic">
                     <QrCode size={56} color="#000000" />
-                    <div className="qr-scan-line"></div>
                   </div>
 
                   <div className="driver-verified-preview">
-                    <span className="driver-preview-name">Ramesh Kumar (Verified)</span>
-                    <span className="driver-preview-vehicle">KA 01 AH 5420</span>
-                    <span className="driver-preview-meta">Badge ID: OTX-BLR-8921 • ⭐ 4.94</span>
+                    <span className="driver-preview-name">{sampleDriver.name}</span>
+                    <span className="driver-preview-vehicle">{sampleDriver.vehicleNo}</span>
+                    <span className="driver-preview-meta">ID: {sampleDriver.id}</span>
                     <span style={{ color: '#10B981', fontSize: '0.75rem', fontWeight: 600 }}>
-                      ✓ KYC & RC Background Approved
+                      ✓ {sampleDriver.status}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <p style={{ fontSize: '0.85rem', color: '#52525B', marginBottom: 16 }}>
-                Scan the QR code placed inside any participating auto rickshaw using your smartphone
-                camera or download our lightweight app to save receipts.
+              <p style={{ fontSize: '0.88rem', color: '#52525B', marginBottom: 16 }}>
+                Scan the QR code placed inside any participating auto using the OTOX app to connect
+                your ride, view verified driver details, and record your journey.
               </p>
 
-              {/* App download buttons */}
-              <div className="modal-download-grid">
-                <a
-                  href={siteData.appLinks.playStorePassenger}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modal-store-button"
+              {/* Show App Store buttons only when app is launched; otherwise show single-app pre-launch notice */}
+              {siteData.appLinks.isLaunched ? (
+                <div className="modal-download-grid">
+                  {siteData.appLinks.androidUrl && (
+                    <a
+                      href={siteData.appLinks.androidUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="modal-store-button"
+                    >
+                      <Smartphone size={22} color="#FFC107" />
+                      <div>
+                        <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>GET IT ON</div>
+                        <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>Google Play</div>
+                      </div>
+                    </a>
+                  )}
+                  {siteData.appLinks.iosUrl && (
+                    <a
+                      href={siteData.appLinks.iosUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="modal-store-button"
+                    >
+                      <Smartphone size={22} color="#FFFFFF" />
+                      <div>
+                        <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>DOWNLOAD ON</div>
+                        <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>App Store</div>
+                      </div>
+                    </a>
+                  )}
+                </div>
+              ) : (
+                <div
+                  style={{
+                    background: '#F8F9FA',
+                    border: '1px solid #E4E4E7',
+                    borderRadius: '10px',
+                    padding: '14px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
+                  }}
                 >
-                  <Smartphone size={22} color="#FFC107" />
-                  <div>
-                    <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>GET IT ON</div>
-                    <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>Google Play</div>
+                  <Smartphone size={20} color="#000000" style={{ flexShrink: 0 }} />
+                  <div style={{ fontSize: '0.86rem', color: '#27272A', lineHeight: 1.45 }}>
+                    <strong>{siteData.appLinks.appName} — Launching Soon</strong>
+                    <div style={{ color: '#52525B', marginTop: 2 }}>
+                      {siteData.appLinks.launchMessage}
+                    </div>
                   </div>
-                </a>
-                <a
-                  href={siteData.appLinks.appStorePassenger}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modal-store-button"
-                >
-                  <Smartphone size={22} color="#FFFFFF" />
-                  <div>
-                    <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>DOWNLOAD ON</div>
-                    <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>App Store</div>
-                  </div>
-                </a>
-              </div>
+                </div>
+              )}
             </div>
           ) : (
             <div>
@@ -143,17 +163,17 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                     <CheckCircle size={32} />
                   </div>
                   <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: 8 }}>
-                    Application Received!
+                    Registration Recorded!
                   </h4>
                   <p style={{ color: '#52525B', fontSize: '0.9rem', marginBottom: 16 }}>
-                    Thank you, <strong>{formData.fullName}</strong>. Our city verification team for{' '}
-                    <strong>{formData.city}</strong> will call you at{' '}
-                    <strong>{formData.phone}</strong> within 24 hours to issue your free OTOX QR kit.
+                    Thank you, <strong>{formData.fullName}</strong>. Our onboarding team for{' '}
+                    <strong>{formData.city}</strong> will reach out at{' '}
+                    <strong>{formData.phone}</strong> as onboarding opens in your area.
                   </p>
                   <button
                     onClick={() => {
                       setDriverSubmitted(false);
-                      setFormData({ fullName: '', phone: '', vehicleNo: '', city: 'Bengaluru' });
+                      setFormData({ fullName: '', phone: '', vehicleNo: '', city: '' });
                     }}
                     className="btn-outline"
                     style={{ fontSize: '0.88rem' }}
@@ -164,7 +184,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
               ) : (
                 <form onSubmit={handleDriverSubmit} className="driver-reg-form">
                   <div className="form-group-driver">
-                    <label className="form-label-driver">Driver Full Name *</label>
+                    <label className="form-label-driver">Full Name *</label>
                     <input
                       type="text"
                       className="form-input-driver"
@@ -176,7 +196,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                   </div>
 
                   <div className="form-group-driver">
-                    <label className="form-label-driver">Mobile Number (WhatsApp linked) *</label>
+                    <label className="form-label-driver">Mobile Number *</label>
                     <input
                       type="tel"
                       className="form-input-driver"
@@ -188,7 +208,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                   </div>
 
                   <div className="form-group-driver">
-                    <label className="form-label-driver">Auto Registration Number *</label>
+                    <label className="form-label-driver">Vehical Registration Number *</label>
                     <input
                       type="text"
                       className="form-input-driver"
@@ -203,20 +223,14 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
 
                   <div className="form-group-driver">
                     <label className="form-label-driver">City *</label>
-                    <select
+                    <input
+                      type="text"
                       className="form-input-driver"
+                      placeholder="Enter your city"
+                      required
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    >
-                      <option value="Bengaluru">Bengaluru</option>
-                      <option value="Hyderabad">Hyderabad</option>
-                      <option value="Pune">Pune</option>
-                      <option value="Chennai">Chennai</option>
-                      <option value="Delhi NCR">Delhi NCR</option>
-                      <option value="Mumbai">Mumbai</option>
-                      <option value="Kolkata">Kolkata</option>
-                      <option value="Other">Other City</option>
-                    </select>
+                    />
                   </div>
 
                   <button

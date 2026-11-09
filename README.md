@@ -1,4 +1,4 @@
-# OTOX Mobility Technologies — Official Website
+# OTOX — Official Website
 
 > **Safe rides. Verified drivers. Smarter local travel.**  
 > A modern mobility platform designed to make everyday auto travel safer, simpler, and more accountable through QR-based ride verification.
@@ -38,23 +38,23 @@ otox_web/
 ├── public/                 # Static assets & favicon
 ├── src/
 │   ├── components/         # Shared components across all pages
-│   │   ├── Header.jsx      # Navigation, logo, status beacon & mobile drawer
+│   │   ├── Header.jsx      # Navigation, logo & responsive mobile drawer
 │   │   ├── Footer.jsx      # Shared footer with social links & legal directory
 │   │   └── AppModal.jsx    # QR scan simulator, app download & driver registration modal
 │   │
 │   ├── data/               # ⚡ DATA-DRIVEN JSON REPOSITORY (Easy editing)
-│   │   ├── siteData.json        # Brand info, social media handles, app store URLs, navigation
+│   │   ├── siteData.json        # Brand info, contact info, social links, app URLs, navigation
 │   │   ├── statsData.json       # Live metrics: active drivers, rides verified, cities (API ready)
 │   │   ├── homeData.json        # Hero, Why We Built This, How It Works, Features, FAQs
-│   │   ├── aboutData.json       # Mission, vision, core values, differentiators, roadmap
-│   │   ├── driversData.json     # Driver onboarding steps, benefits, charter, FAQs
-│   │   ├── contactData.json     # Departments, emails, phone numbers, office hours
+│   │   ├── aboutData.json       # Story, mission, vision, differentiators, looking ahead focus
+│   │   ├── driversData.json     # Driver onboarding steps, benefits & FAQs
+│   │   ├── contactData.json     # Departments & closing messages
 │   │   ├── privacyPolicy.json   # Full legal privacy policy clauses
 │   │   └── termsConditions.json # Full legal terms and conditions clauses
 │   │
 │   ├── pages/              # Dedicated page components
 │   │   ├── Home.jsx             # Landing page with interactive QR simulator
-│   │   ├── About.jsx            # About Us, Vision, Mission & Roadmap
+│   │   ├── About.jsx            # About Us, Vision, Mission & Looking Ahead
 │   │   ├── Drivers.jsx          # Dedicated Driver Partner page & quick apply form
 │   │   ├── Contact.jsx          # Contact page with 4 departments & message form
 │   │   ├── PrivacyPolicy.jsx    # Structured Privacy Policy with TOC navigation
@@ -92,27 +92,26 @@ Edit [`src/data/siteData.json`](src/data/siteData.json):
 ```json
 "socialLinks": [
   { "name": "Twitter / X", "id": "twitter", "url": "https://x.com/your_handle", "handle": "@your_handle" },
-  { "name": "Instagram", "id": "instagram", "url": "https://instagram.com/your_handle", "handle": "@your_handle" },
   { "name": "LinkedIn", "id": "linkedin", "url": "https://linkedin.com/company/your_company", "handle": "OTOX Mobility" },
-  { "name": "Facebook", "id": "facebook", "url": "https://facebook.com/your_page", "handle": "OTOX Mobility" },
-  { "name": "YouTube", "id": "youtube", "url": "https://youtube.com/@your_channel", "handle": "@your_channel" },
-  { "name": "WhatsApp", "id": "whatsapp", "url": "https://wa.me/91XXXXXXXXXX", "handle": "+91 XXXXX XXXXX" }
+  { "name": "Instagram", "id": "instagram", "url": "https://instagram.com/your_handle", "handle": "@your_handle" }
 ]
 ```
 
-### 2. Live Platform Counters (Drivers, Verified Rides, Cities)
-Edit [`src/data/statsData.json`](src/data/statsData.json):
+### 2. Live Platform Counters & App Launch Toggle
+Stats counters and App Store download cards are hidden automatically while pre-launch (`"isLaunched": false` / `0` counts). When the app launches or connects to your backend:
+
+- Edit [`src/data/statsData.json`](src/data/statsData.json) and set `"isLaunched": true` with positive `"number"` values (cards with `number: 0` remain filtered out):
 ```json
 {
+  "isLaunched": true,
   "summary": [
-    { "id": "drivers", "value": "12,450+", "label": "Verified Auto Drivers" },
-    { "id": "rides", "value": "485,000+", "label": "QR Rides Verified" },
-    { "id": "users", "value": "180,000+", "label": "Active Commuters" },
-    { "id": "cities", "value": "8 Cities", "label": "Operational Hubs" }
+    { "id": "drivers", "value": "500+", "number": 500, "label": "Verified Auto Drivers" }
   ]
 }
 ```
-> **Backend Integration Tip:** When connecting to a live database or REST API, replace the import in `Home.jsx` with a `useEffect` fetch call returning this identical JSON structure.
+- Edit `"appLinks"` in [`src/data/siteData.json`](src/data/siteData.json) and set `"isLaunched": true` with your single unified app's `"androidUrl"` and `"iosUrl"`.
+- Edit `"contact.headquarters"` in [`src/data/siteData.json`](src/data/siteData.json) (`"isEstablished": true` + address fields) once your physical office and legal entity are established.
+> **Backend Integration Tip:** When connecting to a live database or REST API, replace the `statsData` import in `Home.jsx` and `Drivers.jsx` with a `useEffect` fetch call returning this identical JSON structure.
 
 ### 3. Privacy Policy & Terms and Conditions
 Edit [`src/data/privacyPolicy.json`](src/data/privacyPolicy.json) or [`src/data/termsConditions.json`](src/data/termsConditions.json). The UI dynamically renders headings, clauses, sub-bullets, and the sticky Table of Contents automatically.
@@ -161,8 +160,8 @@ Edit [`src/data/privacyPolicy.json`](src/data/privacyPolicy.json) or [`src/data/
 | Route | Page | Description |
 | :--- | :--- | :--- |
 | `/` | **Home** | Hero, Why OTOX, 3-step guide, features, interactive QR demo, FAQs |
-| `/about` | **About Us** | Story, vision, mission, core values, future roadmap |
-| `/drivers` | **For Drivers** | Benefits, 4-step onboarding, driver perks, driver application form |
+| `/about` | **About Us** | Story, vision, mission, differentiators, looking ahead |
+| `/drivers` | **For Drivers** | Benefits, 4-step onboarding, driver FAQs & application form |
 | `/contact` | **Contact Us** | 4 departments, contact info, interactive inquiry form |
 | `/privacy-policy` | **Privacy Policy** | Comprehensive data privacy & security clauses |
 | `/terms-and-conditions` | **Terms & Conditions** | Comprehensive platform rules, QR rules, liability |
@@ -170,4 +169,4 @@ Edit [`src/data/privacyPolicy.json`](src/data/privacyPolicy.json) or [`src/data/
 ---
 
 ## 📄 License
-© 2026 OTOX Mobility Technologies Pvt. Ltd. All Rights Reserved.
+© 2026 OTOX. All Rights Reserved.

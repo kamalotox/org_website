@@ -2,8 +2,7 @@
   "title": "Terms and Conditions",
   "lastUpdated": "November 1, 2026",
   "effectiveDate": "November 1, 2026",
-  "badge": "Legal Agreement",
-  "summary": "These Terms and Conditions govern your access to and use of the OTOX platform, website, QR-code verification stickers, and mobile applications provided by OTOX Mobility Technologies Pvt. Ltd.",
+  "summary": "These Terms and Conditions govern your access to and use of the OTOX platform, website, QR-code verification stickers, and mobile application.",
   "sections": [
     {
       "id": "acceptance",
@@ -38,7 +37,7 @@
     {
       "id": "qr-authenticity",
       "heading": "5. QR Code Integrity & Prohibitions",
-      "content": "All OTOX QR codes, visual marks, digital security tokens, and stickers are proprietary assets of OTOX Mobility Technologies. It is strictly prohibited to copy, duplicate, digitally forge, tamper with, or redistribute OTOX QR codes for unauthorized commercial gain or deception."
+      "content": "All OTOX QR codes, visual marks, digital security tokens, and stickers are proprietary assets of OTOX. It is strictly prohibited to copy, duplicate, digitally forge, tamper with, or redistribute OTOX QR codes for unauthorized commercial gain or deception."
     },
     {
       "id": "limitation-liability",
@@ -58,7 +57,7 @@
     {
       "id": "governing-law",
       "heading": "9. Governing Law & Dispute Resolution",
-      "content": "These Terms shall be governed by and construed in accordance with the laws of the Republic of India. Any disputes arising in connection with these Terms shall be subject to the exclusive jurisdiction of the competent courts in Bengaluru, Karnataka, India."
+      "content": "These Terms shall be governed by and construed in accordance with the applicable laws of India. Any disputes arising in connection with these Terms shall be resolved in accordance with applicable law."
     }
   ]
 }

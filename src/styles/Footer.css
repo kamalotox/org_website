@@ -2,29 +2,16 @@
 .otox-footer {
   background-color: #0A0A0D;
   color: #A1A1AA;
-  padding-top: 80px;
+  padding-top: 76px;
   padding-bottom: 40px;
-  border-top: 1px solid #1F1F24;
-  position: relative;
-  overflow: hidden;
-}
-
-.otox-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  border-top: 3px solid var(--color-primary);
 }
 
 .footer-top-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1.6fr;
   gap: 48px;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
 /* Brand Column */
@@ -35,33 +22,19 @@
 }
 
 .footer-brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  width: fit-content;
   text-decoration: none;
-}
-
-.footer-logo-box {
-  width: 42px;
-  height: 42px;
-  background: #18181B;
-  border: 2px solid var(--color-primary);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--color-primary);
 }
 
 .footer-brand-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #FFFFFF;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .footer-brand-title span {
@@ -111,15 +84,12 @@
   background: #18181B;
   color: #D4D4D8;
   border: 1px solid #27272A;
-  transition: all var(--transition-fast);
 }
 
 .social-icon-pill:hover {
   background: var(--color-primary);
   color: #000000;
   border-color: var(--color-primary);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
 }
 
 /* Nav Columns */
@@ -153,13 +123,11 @@
 .footer-link-item a {
   color: #A1A1AA;
   font-size: 0.9rem;
-  transition: color var(--transition-fast), transform var(--transition-fast);
   display: inline-block;
 }
 
 .footer-link-item a:hover {
   color: var(--color-primary);
-  transform: translateX(4px);
 }
 
 /* Contact Column */
@@ -184,7 +152,6 @@
 
 .contact-detail-text a {
   color: #D4D4D8;
-  transition: color var(--transition-fast);
 }
 
 .contact-detail-text a:hover {
@@ -192,14 +159,13 @@
 }
 
 .contact-hours-badge {
-  display: inline-block;
-  margin-top: 4px;
-  font-size: 0.75rem;
-  color: #A1A1AA;
-  background: #141418;
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid #27272A;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  font-size: 0.78rem;
+  color: #8E8E93;
+  line-height: 1.4;
 }
 
 /* App Download Badges */
@@ -220,13 +186,11 @@
   border-radius: 10px;
   color: #FFFFFF;
   text-decoration: none;
-  transition: all var(--transition-fast);
 }
 
 .app-badge-btn:hover {
   background: #1F1F24;
   border-color: var(--color-primary);
-  transform: translateY(-2px);
 }
 
 .app-badge-sub {
@@ -264,19 +228,10 @@
 
 .footer-bottom-links a {
   color: #71717A;
-  transition: color var(--transition-fast);
 }
 
 .footer-bottom-links a:hover {
   color: #FFFFFF;
-}
-
-.footer-uber-vibe-tag {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  color: #52525B;
 }
 
 /* Responsive */

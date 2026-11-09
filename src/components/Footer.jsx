@@ -7,7 +7,6 @@ import {
   Clock,
   MapPin,
   ExternalLink,
-  ShieldCheck,
   Smartphone
 } from 'lucide-react';
 import '../styles/Footer.css';
@@ -32,24 +31,6 @@ const BrandIcons = {
       <rect width="4" height="12" x="2" y="9"/>
       <circle cx="4" cy="4" r="2"/>
     </svg>
-  ),
-  facebook: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-    </svg>
-  ),
-  youtube: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
-      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/>
-    </svg>
-  ),
-  whatsapp: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-      <circle cx="12" cy="17" r=".5" fill="currentColor"/>
-    </svg>
   )
 };
 
@@ -66,8 +47,7 @@ export default function Footer({ onOpenModal }) {
         <div className="footer-top-grid">
           {/* Brand Col */}
           <div className="footer-brand-col">
-            <Link to="/" className="footer-brand-logo">
-              <div className="footer-logo-box">O</div>
+            <Link to="/" className="footer-brand-logo" aria-label="OTOX Home">
               <span className="footer-brand-title">
                 OT<span>O</span>X
               </span>
@@ -103,7 +83,7 @@ export default function Footer({ onOpenModal }) {
 
           {/* Quick Links */}
           <div>
-            <h4 className="footer-col-title">Navigation</h4>
+            <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-links-list">
               {siteData.navigation.map((item) => (
                 <li key={item.path} className="footer-link-item">
@@ -121,30 +101,18 @@ export default function Footer({ onOpenModal }) {
                   Scan QR Verification
                 </a>
               </li>
-              <li className="footer-link-item">
-                <Link to="/drivers">Driver Portal & KYC</Link>
-              </li>
             </ul>
           </div>
 
-          {/* Legal & Safety */}
+          {/* Legal */}
           <div>
-            <h4 className="footer-col-title">Legal & Trust</h4>
+            <h4 className="footer-col-title">Legal</h4>
             <ul className="footer-links-list">
               {siteData.legalNavigation.map((item) => (
                 <li key={item.path} className="footer-link-item">
                   <Link to={item.path}>{item.label}</Link>
                 </li>
               ))}
-              <li className="footer-link-item">
-                <Link to="/contact">Safety Escalations</Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/about">Driver Verification Standards</Link>
-              </li>
-              <li className="footer-link-item">
-                <Link to="/contact">Grievance Officer</Link>
-              </li>
             </ul>
           </div>
 
@@ -169,50 +137,49 @@ export default function Footer({ onOpenModal }) {
                   </a>
                   <div>
                     <span className="contact-hours-badge">
-                      <Clock size={11} style={{ display: 'inline', marginRight: 4 }} />
-                      {siteData.contact.officeHours}
+                      <Clock size={12} style={{ flexShrink: 0 }} />
+                      <span>{siteData.contact.officeHours}</span>
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="footer-contact-row">
-                <MapPin size={16} className="contact-icon-wrapper" />
-                <div className="contact-detail-text">
-                  <span>
-                    {siteData.contact.headquarters.address},{' '}
-                    {siteData.contact.headquarters.cityState}
-                  </span>
+              {siteData.contact.headquarters.isEstablished && siteData.contact.headquarters.address && (
+                <div className="footer-contact-row">
+                  <MapPin size={16} className="contact-icon-wrapper" />
+                  <div className="contact-detail-text">
+                    <span>
+                      {siteData.contact.headquarters.address},{' '}
+                      {siteData.contact.headquarters.stateCountry}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
-            {/* Mobile App Download Quick Links */}
-            <div className="footer-app-badges">
-              <a
-                href={siteData.appLinks.playStorePassenger}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="app-badge-btn"
-                onClick={(e) => {
-                  e.preventDefault();
-                  onOpenModal && onOpenModal('passenger');
-                }}
-              >
-                <Smartphone size={20} color="#FFC107" />
-                <div>
-                  <span className="app-badge-sub">Download App for</span>
-                  <span className="app-badge-name">Passengers</span>
-                </div>
-              </a>
-              <Link to="/drivers" className="app-badge-btn">
-                <ShieldCheck size={20} color="#10B981" />
-                <div>
-                  <span className="app-badge-sub">Onboard & Partner</span>
-                  <span className="app-badge-name">OTOX for Auto Drivers</span>
-                </div>
-              </Link>
-            </div>
+            {/* Single App Download Card (rendered once launched) */}
+            {siteData.appLinks.isLaunched && (
+              <div className="footer-app-badges">
+                <a
+                  href={siteData.appLinks.androidUrl || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-badge-btn"
+                  onClick={(e) => {
+                    if (!siteData.appLinks.androidUrl) {
+                      e.preventDefault();
+                      onOpenModal && onOpenModal('passenger');
+                    }
+                  }}
+                >
+                  <Smartphone size={20} color="#FFC107" />
+                  <div>
+                    <span className="app-badge-sub">For Passengers & Drivers</span>
+                    <span className="app-badge-name">Download {siteData.appLinks.appName}</span>
+                  </div>
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -226,10 +193,6 @@ export default function Footer({ onOpenModal }) {
             <Link to="/terms-and-conditions">Terms of Service</Link>
             <span>•</span>
             <Link to="/contact">Support</Link>
-          </div>
-
-          <div className="footer-uber-vibe-tag">
-            <span>Powered by QR Handshake Protocol</span>
           </div>
         </div>
       </div>

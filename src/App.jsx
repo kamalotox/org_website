@@ -55,7 +55,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home onOpenModal={handleOpenModal} />} />
           <Route path="/about" element={<About onOpenModal={handleOpenModal} />} />
-          <Route path="/drivers" element={<Drivers onOpenModal={handleOpenModal} />} />
+          <Route path="/drivers" element={<Drivers />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsConditions />} />
