@@ -1,4 +1,10 @@
 import crypto from 'node:crypto';
+import {
+  OTOX_LOGO_CID,
+  OTOX_LOGO_WIDTH,
+  OTOX_LOGO_HEIGHT,
+  getEmailLogoDataUri
+} from './logoAsset.js';
 
 export const DEPARTMENT_LABELS = {
   general: 'General Enquiries',
@@ -281,8 +287,26 @@ function renderFieldValueHtml(field) {
 /**
  * Generates branded HTML + plain-text email templates with explicit source attribution.
  */
+function renderBrandLogoHtml(logoMode = 'cid') {
+  const fontStack =
+    "'Space Grotesk','Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
+
+  if (logoMode === 'text') {
+    return (
+      `<span style="font-family:${fontStack};font-size:26px;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#FFFFFF;">OT</span>` +
+      `<span style="font-family:${fontStack};font-size:26px;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#FFC107;">O</span>` +
+      `<span style="font-family:${fontStack};font-size:26px;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#FFFFFF;">X</span>`
+    );
+  }
+
+  const src = logoMode === 'data' ? getEmailLogoDataUri() : `cid:${OTOX_LOGO_CID}`;
+  return `<img src="${src}" alt="OTOX" width="${OTOX_LOGO_WIDTH}" height="${OTOX_LOGO_HEIGHT}" border="0" style="display:block;width:${OTOX_LOGO_WIDTH}px;height:${OTOX_LOGO_HEIGHT}px;border:0;outline:none;text-decoration:none;font-family:${fontStack};font-size:24px;font-weight:700;letter-spacing:-0.04em;line-height:1;color:#FFFFFF;" />`;
+}
+
 export function buildSubmissionEmail(normalized, options = {}) {
   const recipientEmail = options.recipientEmail || 'kamalotox@gmail.com';
+  const logoMode = options.logoMode || 'cid';
+  const brandLogoHtml = renderBrandLogoHtml(logoMode);
   const { source, submissionId, submittedAtIst, pagePath, triggerSource, fields, footerHint } =
     normalized;
 
@@ -320,8 +344,14 @@ export function buildSubmissionEmail(normalized, options = {}) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${escapeHtml(normalized.subject)}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700&display=swap');
+    </style>
   </head>
-  <body style="margin:0;padding:0;background-color:#F4F4F6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0B0B0E;">
+  <body style="margin:0;padding:0;background-color:#F4F4F6;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0B0B0E;">
     <!-- Hidden Email Client Preview Text -->
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">
       ${escapeHtml(normalized.previewText)}
@@ -333,11 +363,11 @@ export function buildSubmissionEmail(normalized, options = {}) {
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:620px;background-color:#FFFFFF;border:1px solid #E4E4E7;border-radius:14px;overflow:hidden;">
             <!-- Header -->
             <tr>
-              <td style="background-color:#0B0B0F;padding:20px 24px;border-bottom:4px solid #FFC107;">
+              <td bgcolor="#0B0B0F" style="background-color:#0B0B0F;padding:18px 24px;border-bottom:4px solid #FFC107;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
                   <tr>
                     <td align="left" valign="middle">
-                      <span style="font-size:22px;font-weight:800;letter-spacing:-0.04em;color:#FFFFFF;">OT</span><span style="font-size:22px;font-weight:800;letter-spacing:-0.04em;color:#FFC107;">O</span><span style="font-size:22px;font-weight:800;letter-spacing:-0.04em;color:#FFFFFF;">X</span>
+                      ${brandLogoHtml}
                     </td>
                     <td align="right" valign="middle" style="font-size:12px;font-weight:600;color:#A1A1AA;letter-spacing:0.02em;">
                       Website Enquiry Alert

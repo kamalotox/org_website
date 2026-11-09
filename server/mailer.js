@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { sanitizeHeaderValue } from './emailTemplates.js';
+import { OTOX_LOGO_CID, getEmailLogoAttachment } from './logoAsset.js';
 
 export function getSmtpConfig(env = process.env) {
   const host = (env.SMTP_HOST || 'smtp.gmail.com').trim();
@@ -63,13 +64,23 @@ export async function sendEnquiryEmail(emailContent, options = {}) {
     ? `"${config.fromName.replace(/"/g, '')}" <${config.fromEmail}>`
     : undefined;
 
+  const attachments = [...(emailContent.attachments || [])];
+  if (
+    typeof emailContent.html === 'string' &&
+    emailContent.html.includes(`cid:${OTOX_LOGO_CID}`) &&
+    !attachments.some((item) => item?.cid === OTOX_LOGO_CID)
+  ) {
+    attachments.push(getEmailLogoAttachment());
+  }
+
   const mailOptions = {
     from: fromAddress,
     to: config.toEmail,
     replyTo: emailContent.replyTo,
     subject: emailContent.subject,
     text: emailContent.text,
-    html: emailContent.html
+    html: emailContent.html,
+    ...(attachments.length > 0 ? { attachments } : {})
   };
 
   try {
