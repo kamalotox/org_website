@@ -8,40 +8,40 @@ import {
   Compass,
   MapPin,
   UserCheck,
-  History,
-  ShieldAlert,
-  Zap,
+  ClockCounterClockwise,
+  ShieldWarning,
+  Lightning,
   ArrowRight,
-  ChevronDown,
-  ChevronUp,
-  CheckCircle2
-} from 'lucide-react';
+  CaretDown,
+  CaretUp,
+  CheckCircle
+} from '@phosphor-icons/react';
 import '../styles/Home.css';
 
 export default function Home({ onOpenModal }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [simulatedScanned, setSimulatedScanned] = useState(false);
 
-  const getIcon = (iconName) => {
+  const getIcon = (iconName, size = 22) => {
     switch (iconName) {
       case 'QrCode':
-        return <QrCode size={26} />;
+        return <QrCode size={size} weight="duotone" />;
       case 'ShieldCheck':
-        return <ShieldCheck size={26} />;
+        return <ShieldCheck size={size} weight="duotone" />;
       case 'Compass':
-        return <Compass size={26} />;
+        return <Compass size={size} weight="duotone" />;
       case 'MapPin':
-        return <MapPin size={24} />;
+        return <MapPin size={size} weight="duotone" />;
       case 'UserCheck':
-        return <UserCheck size={24} />;
+        return <UserCheck size={size} weight="duotone" />;
       case 'History':
-        return <History size={24} />;
+        return <ClockCounterClockwise size={size} weight="duotone" />;
       case 'ShieldAlert':
-        return <ShieldAlert size={24} />;
+        return <ShieldWarning size={size} weight="duotone" />;
       case 'Zap':
-        return <Zap size={24} />;
+        return <Lightning size={size} weight="duotone" />;
       default:
-        return <ShieldCheck size={24} />;
+        return <ShieldCheck size={size} weight="duotone" />;
     }
   };
 
@@ -74,7 +74,7 @@ export default function Home({ onOpenModal }) {
                   onClick={() => onOpenModal && onOpenModal('passenger')}
                   className="btn-primary"
                 >
-                  <QrCode size={18} />
+                  <QrCode size={18} weight="bold" />
                   <span>{homeData.hero.primaryCta}</span>
                 </button>
 
@@ -82,7 +82,7 @@ export default function Home({ onOpenModal }) {
                   onClick={() => onOpenModal && onOpenModal('driver')}
                   className="btn-secondary"
                 >
-                  <UserCheck size={18} />
+                  <UserCheck size={18} weight="bold" />
                   <span>{homeData.hero.secondaryCta}</span>
                 </button>
               </div>
@@ -99,13 +99,13 @@ export default function Home({ onOpenModal }) {
 
               <div className="hero-qr-identity-row">
                 <div className="hero-qr-tile" aria-hidden="true">
-                  <QrCode size={48} color="#000000" />
+                  <QrCode size={48} weight="regular" color="#000000" />
                 </div>
 
                 <div className="driver-info-meta">
                   <div className="driver-name-title">
                     <span>{sampleDriver.name}</span>
-                    <ShieldCheck size={17} className="verified-icon-check" />
+                    <ShieldCheck size={17} weight="fill" className="verified-icon-check" />
                   </div>
                   <div className="driver-plate-badge">{sampleDriver.vehicleNo}</div>
                   <div className="driver-id-meta">ID: {sampleDriver.id}</div>
@@ -135,7 +135,7 @@ export default function Home({ onOpenModal }) {
                 className={`hero-interactive-demo-btn ${simulatedScanned ? 'reset-mode' : ''}`}
                 onClick={() => setSimulatedScanned(!simulatedScanned)}
               >
-                <QrCode size={18} />
+                <QrCode size={18} weight="bold" />
                 <span>{simulatedScanned ? 'Reset Preview' : 'Simulate QR Ride Scan'}</span>
               </button>
             </div>
@@ -201,14 +201,14 @@ export default function Home({ onOpenModal }) {
               <div key={st.step} className="step-card">
                 <div className="step-header-row">
                   <div className="step-number-pill">{st.step}</div>
-                  <div className="step-icon-box">{getIcon(st.icon)}</div>
+                  <h3 className="step-card-title">{st.title}</h3>
+                  <div className="step-icon-box" aria-hidden="true">{getIcon(st.icon, 22)}</div>
                 </div>
 
-                <h3 className="step-card-title">{st.title}</h3>
                 <p className="step-card-desc">{st.description}</p>
 
                 <div className="step-card-detail">
-                  <CheckCircle2 size={16} color="#10B981" />
+                  <CheckCircle size={15} weight="fill" color="#10B981" style={{ flexShrink: 0 }} />
                   <span>{st.detail}</span>
                 </div>
               </div>
@@ -217,22 +217,28 @@ export default function Home({ onOpenModal }) {
         </div>
       </section>
 
-      {/* 5. PLATFORM FEATURES GRID */}
+      {/* 5. PLATFORM FEATURES (LEFT INTRO + RIGHT LIST) */}
       <section className="features-section">
         <div className="otox-container">
-          <div className="section-header-center">
-            <h2 className="section-title">{homeData.features.title}</h2>
-            <p className="section-lead">{homeData.features.subtitle}</p>
-          </div>
+          <div className="features-layout-grid">
+            <div className="features-intro">
+              <h2 className="section-title">{homeData.features.title}</h2>
+              <p className="features-intro-lead">{homeData.features.subtitle}</p>
+            </div>
 
-          <div className="features-grid">
-            {homeData.features.items.map((feat) => (
-              <div key={feat.id} className="feature-box">
-                <div className="feature-icon-wrapper">{getIcon(feat.icon)}</div>
-                <h4 className="feature-item-title">{feat.title}</h4>
-                <p className="feature-item-desc">{feat.description}</p>
-              </div>
-            ))}
+            <div className="features-list">
+              {homeData.features.items.map((feat) => (
+                <div key={feat.id} className="feature-list-item">
+                  <div className="feature-item-header">
+                    <div className="feature-icon" aria-hidden="true">
+                      {getIcon(feat.icon, 20)}
+                    </div>
+                    <h4 className="feature-item-title">{feat.title}</h4>
+                  </div>
+                  <p className="feature-item-desc">{feat.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -256,8 +262,9 @@ export default function Home({ onOpenModal }) {
                 <ul className="difference-list">
                   {col.points.map((point, pIdx) => (
                     <li key={pIdx} className="difference-list-item">
-                      <CheckCircle2
+                      <CheckCircle
                         size={18}
+                        weight="fill"
                         color={idx === 1 ? '#10B981' : '#52525B'}
                         style={{ flexShrink: 0, marginTop: 2 }}
                       />
@@ -293,7 +300,7 @@ export default function Home({ onOpenModal }) {
               <ul className="ecosystem-checklist">
                 {homeData.forBothSides.passengers.benefits.map((benefit, i) => (
                   <li key={i} className="ecosystem-check-item">
-                    <CheckCircle2 size={18} className="check-pill-icon" />
+                    <CheckCircle size={18} weight="fill" className="check-pill-icon" />
                     <span>{benefit}</span>
                   </li>
                 ))}
@@ -305,7 +312,7 @@ export default function Home({ onOpenModal }) {
                 style={{ width: '100%' }}
               >
                 <span>{homeData.forBothSides.passengers.cta}</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={18} weight="bold" />
               </button>
             </div>
 
@@ -318,7 +325,7 @@ export default function Home({ onOpenModal }) {
               <ul className="ecosystem-checklist">
                 {homeData.forBothSides.drivers.benefits.map((benefit, i) => (
                   <li key={i} className="ecosystem-check-item">
-                    <CheckCircle2 size={18} className="check-pill-icon" />
+                    <CheckCircle size={18} weight="fill" className="check-pill-icon" />
                     <span>{benefit}</span>
                   </li>
                 ))}
@@ -330,7 +337,7 @@ export default function Home({ onOpenModal }) {
                 style={{ width: '100%', justifyContent: 'center' }}
               >
                 <span>{homeData.forBothSides.drivers.cta}</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={18} weight="bold" />
               </Link>
             </div>
           </div>
@@ -358,9 +365,9 @@ export default function Home({ onOpenModal }) {
                 >
                   <span>{item.question}</span>
                   {openFaqIndex === index ? (
-                    <ChevronUp size={20} style={{ flexShrink: 0 }} />
+                    <CaretUp size={18} weight="bold" style={{ flexShrink: 0 }} />
                   ) : (
-                    <ChevronDown size={20} style={{ flexShrink: 0 }} />
+                    <CaretDown size={18} weight="bold" style={{ flexShrink: 0 }} />
                   )}
                 </button>
 
@@ -389,7 +396,7 @@ export default function Home({ onOpenModal }) {
                 onClick={() => onOpenModal && onOpenModal('passenger')}
                 className="btn-primary"
               >
-                <QrCode size={18} />
+                <QrCode size={18} weight="bold" />
                 <span>{homeData.closing.primaryCta}</span>
               </button>
 
@@ -397,7 +404,7 @@ export default function Home({ onOpenModal }) {
                 onClick={() => onOpenModal && onOpenModal('driver')}
                 className="btn-secondary"
               >
-                <UserCheck size={18} />
+                <UserCheck size={18} weight="bold" />
                 <span>{homeData.closing.secondaryCta}</span>
               </button>
             </div>

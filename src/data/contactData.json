@@ -9,34 +9,34 @@
       "id": "general",
       "name": "General Enquiries",
       "icon": "MessageSquare",
-      "description": "For questions about the platform, services, or general information.",
+      "description": "Questions about OTOX or general info.",
       "email": "hello@otoxmobility.com"
     },
     {
       "id": "driver",
       "name": "Driver Support",
       "icon": "ShieldCheck",
-      "description": "Need help with onboarding, verification, or account issues? Our team is here to assist.",
+      "description": "Help with onboarding and verification.",
       "email": "drivers@otoxmobility.com"
     },
     {
       "id": "partnerships",
-      "name": "Partnerships & Collaborations",
+      "name": "Partnerships",
       "icon": "Briefcase",
-      "description": "Interested in working with us or exploring partnership opportunities?",
+      "description": "Collaborate or partner with OTOX.",
       "email": "partners@otoxmobility.com"
     },
     {
       "id": "technical",
       "name": "Technical Support",
       "icon": "LifeBuoy",
-      "description": "Facing an issue while using the platform? Reach out to our support team for assistance.",
+      "description": "App issues and technical assistance.",
       "email": "support@otoxmobility.com"
     }
   ],
   "closing": {
     "headline": "Thank You for Being Part of the Journey",
-    "tagline": "Thank you for being part of the journey toward smarter and safer local travel. We look forward to connecting with you.",
+    "tagline": "Building safer, smarter local travel together. We look forward to connecting with you.",
     "partnershipNote": "Interested in collaborating with us? Let's explore opportunities together."
   }
 }

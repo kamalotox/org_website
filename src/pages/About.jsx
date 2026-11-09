@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import aboutData from '../data/aboutData.json';
-import { Eye, Target, ArrowRight } from 'lucide-react';
+import { Eye, Target, ArrowRight } from '@phosphor-icons/react';
 import '../styles/About.css';
 
 export default function About({ onOpenModal }) {
@@ -14,10 +14,10 @@ export default function About({ onOpenModal }) {
 
           <p className="about-lead">{aboutData.hero.subheadline}</p>
 
-          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="about-hero-cta">
             <Link to="/contact" className="btn-secondary">
               <span>Partner With Us</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={16} weight="bold" />
             </Link>
             <button
               onClick={() => onOpenModal && onOpenModal('passenger')}
@@ -56,7 +56,7 @@ export default function About({ onOpenModal }) {
             {/* Vision */}
             <div className="vm-card">
               <div className="vm-header-row">
-                <Eye size={20} color="#B45309" />
+                <Eye size={22} weight="duotone" color="#B45309" />
                 <h2 className="vm-title">{aboutData.visionMission.vision.tag}</h2>
               </div>
               <p className="vm-statement">{aboutData.visionMission.vision.statement}</p>
@@ -66,7 +66,7 @@ export default function About({ onOpenModal }) {
             {/* Mission */}
             <div className="vm-card">
               <div className="vm-header-row">
-                <Target size={20} color="#065F46" />
+                <Target size={22} weight="duotone" color="#065F46" />
                 <h2 className="vm-title">{aboutData.visionMission.mission.tag}</h2>
               </div>
               <p className="vm-statement">{aboutData.visionMission.mission.statement}</p>

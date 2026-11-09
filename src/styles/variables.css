@@ -59,7 +59,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -122,12 +122,6 @@ img, svg {
   line-height: 1.55;
   color: #18181B;
   margin-bottom: 14px;
-}
-
-@media (max-width: 640px) {
-  .section-title {
-    font-size: 2rem;
-  }
 }
 
 /* Primary Button */
@@ -204,4 +198,41 @@ img, svg {
 .btn-outline-white:hover {
   border-color: #FFFFFF;
   background: rgba(255, 255, 255, 0.12);
+}
+
+/* Shared Responsive Utilities */
+@media (max-width: 640px) {
+  .otox-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .section-header-center {
+    margin: 0 auto 32px;
+  }
+
+  .section-title {
+    font-size: 1.9rem;
+    margin-bottom: 12px;
+  }
+
+  .section-lead {
+    font-size: 1.02rem;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .btn-outline-white {
+    padding: 12px 20px;
+    font-size: 0.94rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-title {
+    font-size: 1.72rem;
+  }
 }

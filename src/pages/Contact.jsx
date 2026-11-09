@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import contactData from '../data/contactData.json';
 import siteData from '../data/siteData.json';
 import {
-  MessageSquare,
+  ChatCircleText,
   ShieldCheck,
   Briefcase,
-  LifeBuoy,
-  Mail,
+  Lifebuoy,
+  Envelope,
   Phone,
   Clock,
   MapPin,
-  Send,
+  PaperPlaneTilt,
   CheckCircle
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import '../styles/Contact.css';
 
 export default function Contact() {
@@ -28,15 +28,15 @@ export default function Contact() {
   const getDeptIcon = (iconName) => {
     switch (iconName) {
       case 'MessageSquare':
-        return <MessageSquare size={22} />;
+        return <ChatCircleText size={20} weight="duotone" />;
       case 'ShieldCheck':
-        return <ShieldCheck size={22} />;
+        return <ShieldCheck size={20} weight="duotone" />;
       case 'Briefcase':
-        return <Briefcase size={22} />;
+        return <Briefcase size={20} weight="duotone" />;
       case 'LifeBuoy':
-        return <LifeBuoy size={22} />;
+        return <Lifebuoy size={20} weight="duotone" />;
       default:
-        return <Mail size={22} />;
+        return <Envelope size={20} weight="duotone" />;
     }
   };
 
@@ -48,29 +48,32 @@ export default function Contact() {
 
   return (
     <div className="contact-page-container">
-      {/* 1. HERO */}
-      <section className="contact-hero">
-        <div className="otox-container contact-hero-content">
-          <h1 className="contact-headline">{contactData.hero.headline}</h1>
+      {/* 1. HERO & DEPARTMENTS SECTION */}
+      <section className="contact-top-band">
+        <div className="contact-hero">
+          <div className="otox-container contact-hero-content">
+            <h1 className="contact-headline">{contactData.hero.headline}</h1>
 
-          <p className="contact-lead">{contactData.hero.subheadline}</p>
+            <p className="contact-lead">{contactData.hero.subheadline}</p>
+          </div>
         </div>
-      </section>
 
-      {/* 2. DEPARTMENTS GRID */}
-      <section className="dept-section">
-        <div className="otox-container">
-          <div className="dept-grid">
-            {contactData.departments.map((dept) => (
-              <div key={dept.id} className="dept-card">
-                <div className="dept-icon-wrapper">{getDeptIcon(dept.icon)}</div>
-                <h3 className="dept-title">{dept.name}</h3>
-                <p className="dept-desc">{dept.description}</p>
-                <a href={`mailto:${dept.email}`} className="dept-email-link">
-                  {dept.email}
-                </a>
-              </div>
-            ))}
+        <div className="dept-section">
+          <div className="otox-container">
+            <div className="dept-grid">
+              {contactData.departments.map((dept) => (
+                <div key={dept.id} className="dept-card">
+                  <div className="dept-card-header">
+                    <div className="dept-icon-wrapper" aria-hidden="true">{getDeptIcon(dept.icon)}</div>
+                    <h3 className="dept-title">{dept.name}</h3>
+                  </div>
+                  <p className="dept-desc">{dept.description}</p>
+                  <a href={`mailto:${dept.email}`} className="dept-email-link">
+                    {dept.email}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -101,7 +104,7 @@ export default function Contact() {
                       margin: '0 auto 18px'
                     }}
                   >
-                    <CheckCircle size={32} />
+                    <CheckCircle size={32} weight="fill" />
                   </div>
                   <h4 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: 8 }}>
                     Message Received!
@@ -189,8 +192,8 @@ export default function Contact() {
                   <div className="form-group-contact">
                     <label className="form-label-contact">Your Message / Feedback *</label>
                     <textarea
-                      rows={5}
-                      className="form-input-contact"
+                      rows={3}
+                      className="form-input-contact contact-textarea"
                       placeholder="Tell us how we can assist you..."
                       required
                       value={formData.message}
@@ -200,11 +203,10 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="btn-primary"
-                    style={{ alignSelf: 'flex-start', marginTop: 8 }}
+                    className="btn-primary contact-submit-btn"
                   >
                     <span>Submit Message</span>
-                    <Send size={16} />
+                    <PaperPlaneTilt size={16} weight="bold" />
                   </button>
                 </form>
               )}
@@ -214,15 +216,15 @@ export default function Contact() {
             <div className="contact-sidebar-card">
               <div>
                 <h4 className="side-block-title">
-                  <Phone size={20} color="#FFC107" />
+                  <Phone size={20} weight="duotone" color="#FFC107" />
                   Phone & Helpdesk
                 </h4>
                 <div className="side-detail-row">
-                  <span style={{ color: '#71717A', width: 90 }}>Phone:</span>
+                  <span className="side-detail-label">Phone:</span>
                   <a href={`tel:${siteData.contact.phone}`}>{siteData.contact.displayPhone}</a>
                 </div>
                 <div className="side-detail-row">
-                  <span style={{ color: '#71717A', width: 90 }}>Support:</span>
+                  <span className="side-detail-label">Support:</span>
                   <a href={`mailto:${siteData.contact.supportEmail}`}>
                     {siteData.contact.supportEmail}
                   </a>
@@ -231,7 +233,7 @@ export default function Contact() {
 
               <div>
                 <h4 className="side-block-title">
-                  <Clock size={20} color="#FFC107" />
+                  <Clock size={20} weight="duotone" color="#FFC107" />
                   Office Hours
                 </h4>
                 <div className="hours-badge-box">
@@ -247,7 +249,7 @@ export default function Contact() {
               {siteData.contact.headquarters.isEstablished && siteData.contact.headquarters.address && (
                 <div>
                   <h4 className="side-block-title">
-                    <MapPin size={20} color="#FFC107" />
+                    <MapPin size={20} weight="duotone" color="#FFC107" />
                     Office Location
                   </h4>
                   <p style={{ color: '#E4E4E7', fontSize: '0.92rem', lineHeight: 1.6 }}>

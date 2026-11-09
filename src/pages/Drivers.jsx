@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import driversData from '../data/driversData.json';
 import statsData from '../data/statsData.json';
 import {
-  Award,
+  Medal,
   FileText,
-  Smile,
-  Network,
   ShieldCheck,
+  UsersThree,
   CheckCircle,
   ArrowRight,
-  ChevronDown,
-  ChevronUp
-} from 'lucide-react';
+  CaretDown,
+  CaretUp
+} from '@phosphor-icons/react';
 import '../styles/Drivers.css';
 
 export default function Drivers() {
@@ -30,15 +29,15 @@ export default function Drivers() {
   const getPillarIcon = (name) => {
     switch (name) {
       case 'Award':
-        return <Award size={24} />;
+        return <Medal size={22} weight="duotone" />;
       case 'FileText':
-        return <FileText size={24} />;
+        return <FileText size={22} weight="duotone" />;
       case 'Smile':
-        return <Smile size={24} />;
+        return <ShieldCheck size={22} weight="duotone" />;
       case 'Network':
-        return <Network size={24} />;
+        return <UsersThree size={22} weight="duotone" />;
       default:
-        return <ShieldCheck size={24} />;
+        return <ShieldCheck size={22} weight="duotone" />;
     }
   };
 
@@ -86,7 +85,7 @@ export default function Drivers() {
 
               {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '24px 10px' }}>
-                  <CheckCircle size={44} color="#10B981" style={{ margin: '0 auto 14px' }} />
+                  <CheckCircle size={44} weight="fill" color="#10B981" style={{ margin: '0 auto 14px' }} />
                   <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#FFFFFF', marginBottom: 8 }}>
                     Registration Recorded!
                   </h4>
@@ -141,7 +140,7 @@ export default function Drivers() {
                     style={{ width: '100%', marginTop: 6 }}
                   >
                     <span>Submit Driver Application</span>
-                    <ArrowRight size={18} />
+                    <ArrowRight size={18} weight="bold" />
                   </button>
 
                   <div
@@ -153,7 +152,7 @@ export default function Drivers() {
                       color: '#71717A'
                     }}
                   >
-                    <ShieldCheck size={14} color="#10B981" />
+                    <ShieldCheck size={15} weight="fill" color="#10B981" style={{ flexShrink: 0 }} />
                     <span>Zero upfront fees. Keep 100% of your fare.</span>
                   </div>
                 </form>
@@ -174,8 +173,10 @@ export default function Drivers() {
           <div className="driver-pillars-grid">
             {driversData.whyJoin.pillars.map((item, idx) => (
               <div key={idx} className="driver-pillar-box">
-                <div className="driver-pillar-icon">{getPillarIcon(item.icon)}</div>
-                <h4 className="driver-pillar-title">{item.title}</h4>
+                <div className="driver-pillar-header">
+                  <div className="driver-pillar-icon" aria-hidden="true">{getPillarIcon(item.icon)}</div>
+                  <h4 className="driver-pillar-title">{item.title}</h4>
+                </div>
                 <p className="driver-pillar-desc">{item.description}</p>
               </div>
             ))}
@@ -194,8 +195,10 @@ export default function Drivers() {
           <div className="driver-steps-grid">
             {driversData.howToJoin.steps.map((st) => (
               <div key={st.step} className="driver-step-tile">
-                <div className="driver-step-badge">{st.step}</div>
-                <h4 className="driver-step-title">{st.title}</h4>
+                <div className="driver-step-header">
+                  <div className="driver-step-badge">{st.step}</div>
+                  <h4 className="driver-step-title">{st.title}</h4>
+                </div>
                 <p className="driver-step-desc">{st.description}</p>
               </div>
             ))}
@@ -220,9 +223,9 @@ export default function Drivers() {
                 >
                   <span>{faq.q}</span>
                   {openFaqIndex === idx ? (
-                    <ChevronUp size={20} style={{ flexShrink: 0 }} />
+                    <CaretUp size={18} weight="bold" style={{ flexShrink: 0 }} />
                   ) : (
-                    <ChevronDown size={20} style={{ flexShrink: 0 }} />
+                    <CaretDown size={18} weight="bold" style={{ flexShrink: 0 }} />
                   )}
                 </button>
                 {openFaqIndex === idx && (

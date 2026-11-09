@@ -1,6 +1,6 @@
 import React from 'react';
 import privacyData from '../data/privacyPolicy.json';
-import { Calendar } from 'lucide-react';
+import { CalendarBlank } from '@phosphor-icons/react';
 import '../styles/Legal.css';
 
 export default function PrivacyPolicy() {
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
 
           <div className="legal-meta-row">
             <span>
-              <Calendar size={14} style={{ display: 'inline', marginRight: 4 }} />
+              <CalendarBlank size={14} weight="bold" style={{ display: 'inline', marginRight: 5, verticalAlign: '-2px' }} />
               Last Updated: {privacyData.lastUpdated}
             </span>
           </div>

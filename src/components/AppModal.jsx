@@ -6,10 +6,10 @@ import {
   X,
   QrCode,
   CheckCircle,
-  Smartphone,
+  DeviceMobile,
   ShieldCheck,
   ArrowRight
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import '../styles/Modal.css';
 
 export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) {
@@ -74,7 +74,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
               <div className="qr-sim-box">
                 <div className="qr-sim-header">
                   <span className="qr-sim-status">
-                    <CheckCircle size={15} />
+                    <CheckCircle size={15} weight="fill" />
                     QR Verification Preview
                   </span>
                   <span style={{ fontSize: '0.75rem', color: '#71717A' }}>Sample Trip</span>
@@ -111,7 +111,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       rel="noopener noreferrer"
                       className="modal-store-button"
                     >
-                      <Smartphone size={22} color="#FFC107" />
+                      <DeviceMobile size={22} weight="duotone" color="#FFC107" />
                       <div>
                         <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>GET IT ON</div>
                         <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>Google Play</div>
@@ -125,7 +125,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       rel="noopener noreferrer"
                       className="modal-store-button"
                     >
-                      <Smartphone size={22} color="#FFFFFF" />
+                      <DeviceMobile size={22} weight="duotone" color="#FFFFFF" />
                       <div>
                         <div style={{ fontSize: '0.7rem', color: '#A1A1AA' }}>DOWNLOAD ON</div>
                         <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>App Store</div>
@@ -145,7 +145,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                     gap: '12px'
                   }}
                 >
-                  <Smartphone size={20} color="#000000" style={{ flexShrink: 0 }} />
+                  <DeviceMobile size={20} weight="duotone" color="#000000" style={{ flexShrink: 0 }} />
                   <div style={{ fontSize: '0.86rem', color: '#27272A', lineHeight: 1.45 }}>
                     <strong>{siteData.appLinks.appName} — Launching Soon</strong>
                     <div style={{ color: '#52525B', marginTop: 2 }}>
@@ -160,7 +160,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
               {driverSubmitted ? (
                 <div className="reg-success-card">
                   <div className="reg-success-icon">
-                    <CheckCircle size={32} />
+                    <CheckCircle size={32} weight="fill" />
                   </div>
                   <h4 style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: 8 }}>
                     Registration Recorded!
@@ -239,7 +239,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                     style={{ width: '100%', marginTop: 8 }}
                   >
                     <span>Submit Verification Request</span>
-                    <ArrowRight size={18} />
+                    <ArrowRight size={18} weight="bold" />
                   </button>
 
                   <div
@@ -252,7 +252,7 @@ export default function AppModal({ isOpen, onClose, initialTab = 'passenger' }) 
                       marginTop: 4
                     }}
                   >
-                    <ShieldCheck size={14} color="#10B981" />
+                    <ShieldCheck size={15} weight="fill" color="#10B981" style={{ flexShrink: 0 }} />
                     <span>Free registration. No commission taken from meter fares.</span>
                   </div>
                 </form>

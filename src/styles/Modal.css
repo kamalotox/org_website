@@ -216,15 +216,47 @@
 }
 
 @media (max-width: 520px) {
+  .modal-backdrop {
+    padding: 12px;
+  }
+  .modal-card {
+    border-radius: var(--radius-lg);
+    max-height: 92vh;
+  }
+  .modal-close-btn {
+    top: 14px;
+    right: 14px;
+  }
   .modal-body {
     padding: 22px 18px;
+  }
+  .modal-title {
+    font-size: 1.28rem;
+    padding-right: 36px;
+  }
+  .qr-sim-box {
+    padding: 14px;
+  }
+  .qr-sim-header {
+    flex-wrap: wrap;
+    gap: 6px;
   }
   .qr-scanner-card {
     gap: 12px;
     padding: 12px;
   }
   .qr-graphic {
-    width: 76px;
-    height: 76px;
+    width: 72px;
+    height: 72px;
+  }
+  .modal-download-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .qr-scanner-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

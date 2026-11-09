@@ -2,43 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import siteData from '../data/siteData.json';
 import {
-  Mail,
+  Envelope,
   Phone,
   Clock,
   MapPin,
-  ExternalLink,
-  Smartphone
-} from 'lucide-react';
+  DeviceMobile,
+  XLogo,
+  InstagramLogo,
+  LinkedinLogo,
+  ArrowRight
+} from '@phosphor-icons/react';
 import '../styles/Footer.css';
-
-// Crisp SVG Brand Icons
-const BrandIcons = {
-  twitter: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  ),
-  instagram: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-    </svg>
-  ),
-  linkedin: () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-      <rect width="4" height="12" x="2" y="9"/>
-      <circle cx="4" cy="4" r="2"/>
-    </svg>
-  )
-};
 
 export default function Footer({ onOpenModal }) {
   const getSocialIcon = (id) => {
-    const IconComp = BrandIcons[id];
-    if (IconComp) return <IconComp />;
-    return <ExternalLink size={18} />;
+    switch (id) {
+      case 'twitter':
+        return <XLogo size={18} weight="fill" />;
+      case 'instagram':
+        return <InstagramLogo size={18} weight="fill" />;
+      case 'linkedin':
+        return <LinkedinLogo size={18} weight="fill" />;
+      default:
+        return <ArrowRight size={16} weight="bold" />;
+    }
   };
 
   return (
@@ -90,17 +77,6 @@ export default function Footer({ onOpenModal }) {
                   <Link to={item.path}>{item.label}</Link>
                 </li>
               ))}
-              <li className="footer-link-item">
-                <a
-                  href="#demo"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onOpenModal && onOpenModal('passenger');
-                  }}
-                >
-                  Scan QR Verification
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -121,7 +97,7 @@ export default function Footer({ onOpenModal }) {
             <h4 className="footer-col-title">Contact & Helpdesk</h4>
             <div className="footer-contact-items">
               <div className="footer-contact-row">
-                <Mail size={16} className="contact-icon-wrapper" />
+                <Envelope size={16} weight="duotone" className="contact-icon-wrapper" />
                 <div className="contact-detail-text">
                   <a href={`mailto:${siteData.contact.generalEmail}`}>
                     {siteData.contact.generalEmail}
@@ -130,14 +106,14 @@ export default function Footer({ onOpenModal }) {
               </div>
 
               <div className="footer-contact-row">
-                <Phone size={16} className="contact-icon-wrapper" />
+                <Phone size={16} weight="duotone" className="contact-icon-wrapper" />
                 <div className="contact-detail-text">
                   <a href={`tel:${siteData.contact.phone}`}>
                     {siteData.contact.displayPhone}
                   </a>
                   <div>
                     <span className="contact-hours-badge">
-                      <Clock size={12} style={{ flexShrink: 0 }} />
+                      <Clock size={12} weight="bold" style={{ flexShrink: 0 }} />
                       <span>{siteData.contact.officeHours}</span>
                     </span>
                   </div>
@@ -146,7 +122,7 @@ export default function Footer({ onOpenModal }) {
 
               {siteData.contact.headquarters.isEstablished && siteData.contact.headquarters.address && (
                 <div className="footer-contact-row">
-                  <MapPin size={16} className="contact-icon-wrapper" />
+                  <MapPin size={16} weight="duotone" className="contact-icon-wrapper" />
                   <div className="contact-detail-text">
                     <span>
                       {siteData.contact.headquarters.address},{' '}
@@ -172,7 +148,7 @@ export default function Footer({ onOpenModal }) {
                     }
                   }}
                 >
-                  <Smartphone size={20} color="#FFC107" />
+                  <DeviceMobile size={20} weight="duotone" color="#FFC107" />
                   <div>
                     <span className="app-badge-sub">For Passengers & Drivers</span>
                     <span className="app-badge-name">Download {siteData.appLinks.appName}</span>
